@@ -161,3 +161,42 @@ always one of the seller's two stated prices, exactly as listed.
   limit).
 - The development-stage / own-risk banner is always visible at the top of
   the page, in the selected language.
+
+## 6. UI redesign — OpenSea-style (owner order, 2026-11-27)
+
+Goal: rebuild the front-end's look and layout in the OpenSea idiom while
+keeping every existing function and every honesty rule. This is a display
+redesign only: contracts, artifacts, mint logic and the trading status do
+not change.
+
+Layout:
+- Sticky top bar: brand, a wide search field (filters loaded tokens by
+  name / token id / collection), language, theme, wallet button.
+- The 🚧 development / own-risk banner stays directly under the bar,
+  always visible.
+- Market view:
+  - A collection strip (chips/cards for every registered collection plus
+    "All collections", and the add-by-address control).
+  - A collection header for the current selection: big name, symbol,
+    contract address with explorer link, and a stats row limited to
+    TRUTHFUL on-chain numbers — Items (token count), Owners (unique
+    owners among loaded tokens), collection type — plus a "Trading: not
+    available yet" chip. NO floor price, NO volume, NO fabricated stats
+    (there is no market contract, so none exist).
+  - A filter sidebar (collapsible on mobile): status filter (All / Mine),
+    sort (token ID ascending / descending).
+  - A large card grid; clicking a card opens an item detail dialog:
+    big image, name, collection, owner (full, explorer link), contract,
+    token ID, metadata description, attributes if the metadata has them,
+    token URI link, and a DISABLED buy area that repeats the honest
+    trading notice.
+  - The trade notice remains visible in the market view itself.
+- Mint view: the same three sections (deploy with type select, simple
+  image mint, advanced URI mint) restyled as clean cards. ALL existing
+  element ids and behaviours are preserved exactly.
+- Style: fresh stylesheet in the OpenSea idiom — rounded (16px) cards,
+  soft shadows, neutral surfaces, light/dark via the existing guppy-theme
+  mechanism; the project fonts (Space Grotesk / Zen Kaku Gothic New) and
+  the pink brand accent stay. Responsive: sidebar collapses under ~860px.
+- Rendering safety is unchanged: everything chain- or metadata-derived is
+  rendered with textContent; images only from https: or data:image URLs.
