@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QOM NFT — Marketplace & Mint (Qom chain)</title>
+<meta name="description" content="Browse, mint and (soon) trade NFTs on Qom chain (33303). A community-built front-end: deploy your own ERC-721 collection and mint from your own wallet — nothing is custodied.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+<script>(function(){try{var t=localStorage.getItem('guppy-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="brand-logo-emoji">🖼️</span> QOM NFT <span class="muted" id="brandSub">Marketplace & Mint</span></div>
+  <div class="top-actions">
+    <button id="langBtn" class="btn small" type="button">日本語</button>
+    <button id="themeBtn" class="btn small" type="button">🌙</button>
+    <button id="connectBtn" class="btn small primary" type="button" data-i18n="connect">Connect Wallet</button>
+  </div>
+</header>
+
+<p class="notice warn" id="devBanner" data-i18n="devNotice"></p>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="market" type="button" data-i18n="tabMarket">Market</button>
+  <button class="tab" data-tab="mint" type="button" data-i18n="tabMint">Mint</button>
+</nav>
+
+<main>
+  <section id="tab-market" class="card">
+    <h2 data-i18n="marketTitle">Browse NFTs</h2>
+    <p class="notice" data-i18n="tradeNotice"></p>
+    <div class="row wrap">
+      <label class="grow"><span data-i18n="collectionLbl">Collection</span>
+        <select id="colSelect"></select>
+      </label>
+      <label class="check"><input type="checkbox" id="onlyMine"> <span data-i18n="onlyMine">Only mine</span></label>
+      <button id="refreshBtn" class="btn" type="button" data-i18n="refresh">Refresh</button>
+    </div>
+    <div class="row wrap">
+      <input id="addColAddr" class="grow mono" data-i18n-ph="addColPh" placeholder="Add a collection by address (0x…)">
+      <button id="addColBtn" class="btn" type="button" data-i18n="addCol">Add collection</button>
+    </div>
+    <p id="colMeta" class="muted"></p>
+    <p id="marketMsg" class="msg"></p>
+    <div id="grid" class="nft-grid"></div>
+  </section>
+
+  <section id="tab-mint" class="card" hidden>
+    <h2 data-i18n="mintTitle">Mint</h2>
+    <p class="notice" data-i18n="mintIntro"></p>
+
+    <h3 data-i18n="deployTitle">1. Create your collection</h3>
+    <p class="muted" data-i18n="deployNote"></p>
+    <div class="row wrap">
+      <input id="colName" class="grow" data-i18n-ph="colNamePh" placeholder="Collection name (e.g. My Art)">
+      <input id="colSymbol" class="grow" data-i18n-ph="colSymbolPh" placeholder="Symbol (e.g. MYART)">
+    </div>
+    <button id="deployBtn" class="btn primary wide" type="button" data-i18n="deployBtn">Deploy my collection</button>
+    <p id="deployMsg" class="msg"></p>
+
+    <h3 data-i18n="mintOneTitle">2. Mint an NFT</h3>
+    <p class="muted" data-i18n="mintOneNote"></p>
+    <label><span data-i18n="mintColLbl">Collection (one you own)</span>
+      <select id="mintColSelect"></select>
+    </label>
+    <label><span data-i18n="recipientLbl">Recipient address</span>
+      <input id="mintTo" class="mono" placeholder="0x…">
+    </label>
+    <label><span data-i18n="uriLbl">Metadata URI (https://… or ipfs://…)</span>
+      <input id="mintUri" class="mono" placeholder="ipfs://…/1.json">
+    </label>
+    <button id="mintBtn" class="btn primary wide" type="button" data-i18n="mintBtn">Mint NFT</button>
+    <p id="mintMsg" class="msg"></p>
+    <details>
+      <summary data-i18n="metaHelpTitle">What is a metadata URI?</summary>
+      <p class="muted" data-i18n="metaHelp"></p>
+      <pre class="code">{
+  "name": "My NFT #1",
+  "description": "…",
+  "image": "ipfs://…/1.png"
+}</pre>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <p class="muted"><span data-i18n="moreTools">More tools</span>:
+    <a href="https://qomdex.com/" target="_blank" rel="noopener">QOM DEX</a> ·
+    <a href="https://ql1-infinite42-guppy-histoire.github.io/qom-aggregator/" target="_blank" rel="noopener" data-i18n="toolAgg">QOM Aggregator</a> ·
+    <a href="https://ql1-infinite42-guppy-histoire.github.io/qom-faucet/" target="_blank" rel="noopener" data-i18n="toolFaucet">QOM Faucet</a>
+  </p>
+  <p class="muted" id="footNote"></p>
+</footer>
+
+<dialog id="walletDlg">
+  <h3 data-i18n="connected">Connected</h3>
+  <p class="mono" id="dlgAddr"></p>
+  <div class="row">
+    <button id="dlgClose" class="btn" type="button" data-i18n="close">Close</button>
+    <button id="dlgDisconnect" class="btn" type="button" data-i18n="disconnect">Disconnect</button>
+  </div>
+</dialog>
+
+<script src="ethers.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
