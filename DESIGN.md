@@ -48,17 +48,68 @@ Trustless fixed-price trading needs a market contract:
 - Seller lists (token escrowed in the contract, or traded via `approve` +
   atomic `buy` that pulls the token at purchase time — the approve-pull
   shape avoids escrow custody).
-- Buyer pays QOMX; the contract transfers the NFT and forwards payment in
-  the same transaction; seller can cancel an unfilled listing.
+- The contract transfers the NFT and forwards payment in the same
+  transaction; seller can cancel an unfilled listing.
 - Optional protocol fee (bps) — a policy choice, not a technical need.
 
 Until that contract exists, the site is browse-only and says so.
+
+### 3.1 Payment currency — buyer chooses Q or QOMX (owner spec, 2026-11-27)
+
+The owner has specified: at purchase time the **buyer chooses to pay in Q**
+(the Qom chain stablecoin, `0xd53D9f937537262F78AEC261785D731E9E829138`,
+6 decimals) **or in QOMX**. How listings carry prices is a design choice;
+the options, with the recommendation first:
+
+**Option A — dual-price listings, pass-through (RECOMMENDED).**
+The seller sets a price in Q and/or a price in QOMX when listing (at least
+one; setting both enables both). The buyer picks one of the offered
+currencies; the contract forwards exactly that currency to the seller
+(Q via `transferFrom`, QOMX as native value). No conversion anywhere.
+
+- No dependency on the DEX pool, no rate race between quote and purchase,
+  no slippage to argue about; the contract stays small and auditable.
+- The buyer's choice is real for every currency the seller enabled; a
+  seller who sets only one price accepts only that currency.
+- Seller receives the currency the buyer chose — transparent, because the
+  seller personally priced the item in that currency.
+
+**Option B — single denomination + conversion at purchase.**
+Listings are priced in one currency (e.g. Q); a buyer paying QOMX has the
+contract swap QOMX→Q through the official Router in the same transaction
+and pays the seller in Q (or the mirror image). Seller always receives the
+listing currency.
+
+- Problems: the only Q/QOMX pool is small (reserves measured 2026-11-26:
+  ≈7.53M QOMX / ≈10,003 Q, so ≈752 QOMX per Q) — any sizeable converted
+  purchase moves the price and needs slippage bounds, a deadline, and a
+  refund path; the swap can fail and take the whole purchase down with it;
+  the market contract grows a Router dependency and a much larger audit
+  surface. The rate also moves between the buyer's click and the block
+  that mines the purchase.
+- A softer variant keeps conversion OUT of the contract: the front-end
+  offers "swap first, then buy" as two user-signed steps (the existing
+  QOM DEX / aggregator protections apply to the swap leg). This can be
+  added later without changing the market contract.
+
+**Display-only conversion (either option).** Showing an approximate
+equivalent ("≈ 750 QOMX" under a Q price) using the pool's spot reserves
+is fine as a labelled estimate; it must never be the settlement price.
+
+**Open sub-questions for the owner:** accept Option A? If a fee is ever
+charged, it applies per currency as paid under A. Under B someone must
+also decide who bears slippage (naturally the buyer) and the max impact
+allowed before a purchase refuses to execute.
 
 ## 4. Open decisions (for the owner)
 
 1. **Market contract:** deploy or not? If yes — from whose wallet, who is
    the contract owner, what fee (0% is a valid choice), approve-pull vs
-   escrow? Deployment is a separate phase, like the QOM DEX limit orders.
+   escrow?
+1b. **Payment method (§3.1):** the buyer-pays-in-Q-or-QOMX requirement is
+   set by the owner; the open part is the mechanism — Option A dual-price
+   pass-through (recommended) vs Option B single denomination with
+   in-contract conversion, and, under B, the slippage rules. Deployment is a separate phase, like the QOM DEX limit orders.
 2. **Shared collection:** is (a) per-creator self-deploy enough, or is a
    shared/factory model wanted later?
 3. **Domain:** the site is on GitHub Pages
