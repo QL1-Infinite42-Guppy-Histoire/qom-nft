@@ -14,7 +14,10 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand"><span class="brand-logo-emoji">🖼️</span> QOM NFT <span class="muted" id="brandSub">Marketplace & Mint</span></div>
+  <div class="brand"><span class="brand-logo-emoji">🖼️</span> <span class="brand-name">QOM NFT</span> <span class="muted" id="brandSub">Marketplace & Mint</span></div>
+  <div class="search-wrap">
+    <input id="searchInput" type="search" data-i18n-ph="searchPh" placeholder="Search by name, token ID or collection…">
+  </div>
   <div class="top-actions">
     <button id="langBtn" class="btn small" type="button">日本語</button>
     <button id="themeBtn" class="btn small" type="button">🌙</button>
@@ -30,90 +33,121 @@
 </nav>
 
 <main>
-  <section id="tab-market" class="card">
-    <h2 data-i18n="marketTitle">Browse NFTs</h2>
+  <section id="tab-market">
+    <h2 class="page-title" data-i18n="marketTitle">Browse NFTs</h2>
     <p class="notice" data-i18n="tradeNotice"></p>
-    <div class="row wrap">
-      <label class="grow"><span data-i18n="collectionLbl">Collection</span>
-        <select id="colSelect"></select>
-      </label>
-      <label class="check"><input type="checkbox" id="onlyMine"> <span data-i18n="onlyMine">Only mine</span></label>
-      <button id="refreshBtn" class="btn" type="button" data-i18n="refresh">Refresh</button>
-    </div>
-    <div class="row wrap">
+
+    <h3 class="strip-title" data-i18n="collectionLbl">Collection</h3>
+    <div id="colStrip" class="col-strip"></div>
+    <div class="row wrap add-col-row">
       <input id="addColAddr" class="grow mono" data-i18n-ph="addColPh" placeholder="Add a collection by address (0x…)">
       <button id="addColBtn" class="btn" type="button" data-i18n="addCol">Add collection</button>
     </div>
-    <p id="colMeta" class="muted"></p>
-    <p id="marketMsg" class="msg"></p>
-    <div id="grid" class="nft-grid"></div>
+
+    <header class="col-header">
+      <div class="col-title-row">
+        <h3 id="colTitle"></h3>
+        <span class="chip chip-warn" data-i18n="tradingChip">Trading: not available yet</span>
+      </div>
+      <p class="col-sub"><span id="colSymbol"></span> <a id="colAddrLink" class="mono" target="_blank" rel="noopener"></a></p>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num" id="statItems">–</span><span class="stat-lbl" data-i18n="statItems">Items</span></div>
+        <div class="stat"><span class="stat-num" id="statOwners">–</span><span class="stat-lbl" data-i18n="statOwners">Owners</span></div>
+        <div class="stat"><span class="stat-num" id="statType">–</span><span class="stat-lbl" data-i18n="statType">Type</span></div>
+      </div>
+    </header>
+
+    <button id="filterToggle" class="btn filter-toggle" type="button" data-i18n="filtersLbl">Filters</button>
+    <div class="market-body">
+      <aside class="sidebar" id="sidebar">
+        <h4 data-i18n="statusLbl">Status</h4>
+        <label class="check"><input type="checkbox" id="onlyMine"> <span data-i18n="onlyMine">Only mine</span></label>
+        <h4 data-i18n="sortLbl">Sort</h4>
+        <select id="sortSel">
+          <option value="asc" data-i18n="sortIdAsc">Token ID: low to high</option>
+          <option value="desc" data-i18n="sortIdDesc">Token ID: high to low</option>
+        </select>
+        <button id="refreshBtn" class="btn wide" type="button" data-i18n="refresh">Refresh</button>
+      </aside>
+      <div class="market-main">
+        <p id="colMeta" class="muted"></p>
+        <p id="marketMsg" class="msg"></p>
+        <div id="grid" class="nft-grid"></div>
+      </div>
+    </div>
   </section>
 
-  <section id="tab-mint" class="card" hidden>
-    <h2 data-i18n="mintTitle">Mint</h2>
-    <p class="notice" data-i18n="mintIntro"></p>
+  <section id="tab-mint" hidden>
+    <div class="card mint-card">
+      <h2 data-i18n="mintTitle">Mint</h2>
+      <p class="notice" data-i18n="mintIntro"></p>
 
-    <h3 data-i18n="deployTitle">1. Create your collection</h3>
-    <p class="muted" data-i18n="deployNote"></p>
-    <label><span data-i18n="colTypeLbl">Collection type</span>
-      <select id="colType">
-        <option value="standard" data-i18n="typeStandard">Standard — each token has its own metadata</option>
-        <option value="shared" data-i18n="typeShared">Shared image — one metadata for all tokens</option>
-      </select>
-    </label>
-    <p class="muted" data-i18n="typeNote"></p>
-    <div class="row wrap">
-      <input id="colName" class="grow" data-i18n-ph="colNamePh" placeholder="Collection name (e.g. My Art)">
-      <input id="colSymbol" class="grow" data-i18n-ph="colSymbolPh" placeholder="Symbol (e.g. MYART)">
+      <h3 data-i18n="deployTitle">1. Create your collection</h3>
+      <p class="muted" data-i18n="deployNote"></p>
+      <label><span data-i18n="colTypeLbl">Collection type</span>
+        <select id="colType">
+          <option value="standard" data-i18n="typeStandard">Standard — each token has its own metadata</option>
+          <option value="shared" data-i18n="typeShared">Shared image — one metadata for all tokens</option>
+        </select>
+      </label>
+      <p class="muted" data-i18n="typeNote"></p>
+      <div class="row wrap">
+        <input id="colName" class="grow" data-i18n-ph="colNamePh" placeholder="Collection name (e.g. My Art)">
+        <input id="colSymbol" class="grow" data-i18n-ph="colSymbolPh" placeholder="Symbol (e.g. MYART)">
+      </div>
+      <button id="deployBtn" class="btn primary wide" type="button" data-i18n="deployBtn">Deploy my collection</button>
+      <p id="deployMsg" class="msg"></p>
     </div>
-    <button id="deployBtn" class="btn primary wide" type="button" data-i18n="deployBtn">Deploy my collection</button>
-    <p id="deployMsg" class="msg"></p>
 
-    <label><span data-i18n="mintColLbl">Collection (one you own)</span>
-      <select id="mintColSelect"></select>
-    </label>
-    <label><span data-i18n="recipientLbl">Recipient address</span>
-      <input id="mintTo" class="mono" placeholder="0x…">
-    </label>
+    <div class="card mint-card">
+      <label><span data-i18n="mintColLbl">Collection (one you own)</span>
+        <select id="mintColSelect"></select>
+      </label>
+      <label><span data-i18n="recipientLbl">Recipient address</span>
+        <input id="mintTo" class="mono" placeholder="0x…">
+      </label>
 
-    <h3 data-i18n="simpleTitle">2. Simple mint — just attach an image</h3>
-    <p class="muted" data-i18n="simpleNote"></p>
-    <label><span data-i18n="imgLbl">Image</span>
-      <input id="imgFile" type="file" accept="image/*">
-    </label>
-    <img id="imgPreview" class="nft-preview" alt="" hidden>
-    <label><span data-i18n="nftNameLbl">NFT name</span>
-      <input id="nftName" data-i18n-ph="nftNamePh" placeholder="e.g. My Art">
-    </label>
-    <label><span data-i18n="descLbl">Description (optional)</span>
-      <input id="nftDesc">
-    </label>
-    <p id="imgInfo" class="muted"></p>
-    <div class="row wrap">
-      <button id="setImgBtn" class="btn" type="button" data-i18n="setImgBtn" hidden>Set this image on the collection (one time)</button>
-      <label class="check"><span data-i18n="copiesLbl">Copies</span> <input id="mintCopies" type="number" value="1" min="1" max="20" class="copies"></label>
-      <button id="mintImgBtn" class="btn primary" type="button" data-i18n="mintImgBtn">Mint with this image</button>
+      <h3 data-i18n="simpleTitle">2. Simple mint — just attach an image</h3>
+      <p class="muted" data-i18n="simpleNote"></p>
+      <label><span data-i18n="imgLbl">Image</span>
+        <input id="imgFile" type="file" accept="image/*">
+      </label>
+      <img id="imgPreview" class="nft-preview" alt="" hidden>
+      <label><span data-i18n="nftNameLbl">NFT name</span>
+        <input id="nftName" data-i18n-ph="nftNamePh" placeholder="e.g. My Art">
+      </label>
+      <label><span data-i18n="descLbl">Description (optional)</span>
+        <input id="nftDesc">
+      </label>
+      <p id="imgInfo" class="muted"></p>
+      <div class="row wrap">
+        <button id="setImgBtn" class="btn" type="button" data-i18n="setImgBtn" hidden>Set this image on the collection (one time)</button>
+        <label class="check"><span data-i18n="copiesLbl">Copies</span> <input id="mintCopies" type="number" value="1" min="1" max="20" class="copies"></label>
+        <button id="mintImgBtn" class="btn primary" type="button" data-i18n="mintImgBtn">Mint with this image</button>
+      </div>
+      <p class="muted" data-i18n="copiesNote"></p>
+      <p id="simpleMsg" class="msg"></p>
     </div>
-    <p class="muted" data-i18n="copiesNote"></p>
-    <p id="simpleMsg" class="msg"></p>
 
-    <h3 data-i18n="mintOneTitle">3. Advanced — mint with a metadata URI</h3>
-    <p class="muted" data-i18n="mintOneNote"></p>
-    <p class="notice" id="sharedAdvNote" data-i18n="sharedAdvNote" hidden></p>
-    <label><span data-i18n="uriLbl">Metadata URI (https://… or ipfs://…)</span>
-      <input id="mintUri" class="mono" placeholder="ipfs://…/1.json">
-    </label>
-    <button id="mintBtn" class="btn primary wide" type="button" data-i18n="mintBtn">Mint NFT</button>
-    <p id="mintMsg" class="msg"></p>
-    <details>
-      <summary data-i18n="metaHelpTitle">What is a metadata URI?</summary>
-      <p class="muted" data-i18n="metaHelp"></p>
-      <pre class="code">{
+    <div class="card mint-card">
+      <h3 data-i18n="mintOneTitle">3. Advanced — mint with a metadata URI</h3>
+      <p class="muted" data-i18n="mintOneNote"></p>
+      <p class="notice" id="sharedAdvNote" data-i18n="sharedAdvNote" hidden></p>
+      <label><span data-i18n="uriLbl">Metadata URI (https://… or ipfs://…)</span>
+        <input id="mintUri" class="mono" placeholder="ipfs://…/1.json">
+      </label>
+      <button id="mintBtn" class="btn primary wide" type="button" data-i18n="mintBtn">Mint NFT</button>
+      <p id="mintMsg" class="msg"></p>
+      <details>
+        <summary data-i18n="metaHelpTitle">What is a metadata URI?</summary>
+        <p class="muted" data-i18n="metaHelp"></p>
+        <pre class="code">{
   "name": "My NFT #1",
   "description": "…",
   "image": "ipfs://…/1.png"
 }</pre>
-    </details>
+      </details>
+    </div>
   </section>
 </main>
 
@@ -132,6 +166,34 @@
   <div class="row">
     <button id="dlgClose" class="btn" type="button" data-i18n="close">Close</button>
     <button id="dlgDisconnect" class="btn" type="button" data-i18n="disconnect">Disconnect</button>
+  </div>
+</dialog>
+
+<dialog id="itemDlg">
+  <div class="item-layout">
+    <div class="item-media" id="itemMedia"></div>
+    <div class="item-info">
+      <p class="item-col"><span data-i18n="collectionLbl">Collection</span>: <span id="itemCollection"></span></p>
+      <h3 id="itemName"></h3>
+      <p class="item-owner"><span data-i18n="ownerWord">Owner</span>: <a id="itemOwner" class="mono" target="_blank" rel="noopener"></a></p>
+      <div id="itemDescWrap">
+        <h4 data-i18n="dlgDescription">Description</h4>
+        <p id="itemDesc"></p>
+      </div>
+      <div id="itemAttrsWrap">
+        <h4 data-i18n="dlgAttributes">Attributes</h4>
+        <div id="itemAttrs" class="attr-grid"></div>
+      </div>
+      <h4 data-i18n="dlgDetails">Details</h4>
+      <dl class="details">
+        <div><dt data-i18n="dlgContract">Contract</dt><dd><a id="itemContract" class="mono" target="_blank" rel="noopener"></a></dd></div>
+        <div><dt data-i18n="dlgTokenId">Token ID</dt><dd id="itemTokenId"></dd></div>
+        <div><dt data-i18n="dlgTokenUri">Token URI</dt><dd><a id="itemUri" target="_blank" rel="noopener"></a></dd></div>
+      </dl>
+      <button id="itemBuyBtn" class="btn primary wide" type="button" disabled data-i18n="buyBtn">Buy now</button>
+      <p class="notice" data-i18n="buyUnavailable"></p>
+      <button id="itemClose" class="btn wide" type="button" data-i18n="close">Close</button>
+    </div>
   </div>
 </dialog>
 

@@ -15,8 +15,8 @@ const CFG = {
 };
 
 const I18N = {
-en:{connect:"Connect Wallet",connected:"Connected",close:"Close",disconnect:"Disconnect",wrongChain:"Wrong network — switch to Qom chain (33303)",noWallet:"No wallet found. Open this page in your wallet's browser (e.g. MetaMask).",openInWallet:"Open in MetaMask",brandSub:"Marketplace & Mint",devNotice:"🚧 Under development — this site is experimental. Use at your own risk: you sign everything with your own wallet and pay your own gas.",tabMarket:"Market",tabMint:"Mint",marketTitle:"Browse NFTs",tradeNotice:"Trading is not available yet: listing and buying need a market contract, which has not been deployed. The plan is to let buyers pay in Q or QOMX (buyer's choice); who deploys the contract and the final rules are still being decided — for now this page is browse-only.",collectionLbl:"Collection",onlyMine:"Only mine",refresh:"Refresh",addColPh:"Add a collection by address (0x…)",addCol:"Add collection",mintTitle:"Mint",mintIntro:"Two steps: deploy your own collection contract (once), then mint NFTs into it. Everything is signed by your wallet.",deployTitle:"1. Create your collection",deployNote:"Deploys a standard ERC-721 collection contract from YOUR wallet. You become its owner and the only minter. This site never holds your keys or your NFTs. Deployment costs gas, paid by you.",colNamePh:"Collection name (e.g. My Art)",colSymbolPh:"Symbol (e.g. MYART)",deployBtn:"Deploy my collection",mintOneTitle:"3. Advanced — mint with a metadata URI",mintOneNote:"For standard collections: mint with a metadata URI you prepared yourself (the original method). The NFT goes to the recipient above.",mintColLbl:"Collection (one you own)",recipientLbl:"Recipient address",uriLbl:"Metadata URI (https://… or ipfs://…)",mintBtn:"Mint NFT",colTypeLbl:"Collection type",typeStandard:"Standard — each token has its own metadata",typeShared:"Shared image — one metadata for all tokens (cheapest for same-art collections)",typeNote:"Shared-image collections store the metadata once, in the contract; every token then shows the same art and name, and each mint is cheap. Standard collections give every token its own metadata URI.",simpleTitle:"2. Simple mint — just attach an image",simpleNote:"Attach an image, name the NFT, and mint — the site builds the metadata and stores it on-chain as a data URI (no external hosting, no accounts). The image is kept in this browser, so the same art can be minted again without re-uploading.",imgLbl:"Image",nftNameLbl:"NFT name",nftNamePh:"e.g. My Art",descLbl:"Description (optional)",imgInfoOrig:"Original image: {a} KB",imgInfoUsed:"Stored image: {b} KB",estCost:"Estimated cost ≈ {x} QOMX (an estimate at the current gas price)",setImgBtn:"Set this image on the collection (one time)",mintImgBtn:"Mint with this image",copiesLbl:"Copies",copiesNote:"Each copy is a separate transaction with its own wallet confirmation.",needImage:"Attach an image first.",needSetFirst:"Set this image on the collection first (button above), then mint.",needName:"Give the NFT a name first.",imgSetOk:"Collection image set — you can mint with it now.",settingImg:"Setting the image… check your wallet.",sharedAdvNote:"The selected collection is a shared-image collection: its metadata is set for the whole collection in the simple section above, so per-token URIs don't apply here.",bigImgWarn:"This image is large ({b} KB stored). On-chain storage is expensive — a smaller image is recommended.",progressMinted:"Minted {a} of {b}.",metaHelpTitle:"What is a metadata URI?",metaHelp:"A link to a small JSON file describing the NFT (name, description, image). Upload the JSON and the image to IPFS or your own web space first, then paste the JSON's URL here. This site does not host files.",moreTools:"More tools",toolAgg:"QOM Aggregator",toolFaucet:"QOM Faucet",loading:"Loading…",noTokens:"No tokens found in this collection.",notErc721:"That address is not an ERC-721 contract.",badAddress:"Enter a valid address.",tokensWord:"tokens",contractWord:"contract",showingFirst:"Showing the first {n} tokens.",metaFail:"Metadata unavailable",unnamed:"Unnamed",ownerWord:"Owner",noImage:"No image",needConnect:"Connect your wallet first.",notOwner:"Your wallet does not own this collection (owner: {a}).",deployedOk:"Collection deployed: {a}",deploying:"Deploying… check your wallet.",minting:"Minting… check your wallet.",mintedOk:"Minted token #{id} — sent to {a}.",fillAll:"Fill in every field.",artifactFail:"The collection contract data failed to load, so deploy and mint are unavailable right now.",txFailed:"The transaction failed or was rejected.",rpcError:"Could not read from the chain (RPC error). Reload to retry.",viewExplorer:"View on the explorer",footNote:"Built by the community — not an official product. · RPC: https://rpc.qomx.io · Chain ID: 33303 · Native: QOMX · Collections are standard ERC-721 (OpenZeppelin), deployed by each creator from their own wallet."},
-ja:{connect:"ウォレット接続",connected:"接続中",close:"閉じる",disconnect:"切断",wrongChain:"ネットワークが違います。Qom chain（33303）に切り替えてください",noWallet:"ウォレットが見つかりません。ウォレット（MetaMask等）のブラウザで開いてください。",openInWallet:"MetaMaskで開く",brandSub:"マーケット＆ミント",devNotice:"🚧 開発中です。このサイトは試験的なものです。利用は自己責任でお願いします。署名はすべて自分のウォレットで行い、ガス代も自己負担です。",tabMarket:"マーケット",tabMint:"ミント",marketTitle:"NFT を見る",tradeNotice:"売買はまだできません。出品と購入にはマーケット用コントラクトが必要ですが、まだデプロイされていません。購入時の支払いは Q か QOMX を買い手が選べる形を予定していますが、誰がデプロイし、どういうルールにするかは検討中のため、当面は閲覧のみです。",collectionLbl:"コレクション",onlyMine:"自分のだけ",refresh:"更新",addColPh:"コレクションをアドレスで追加（0x…）",addCol:"コレクション追加",mintTitle:"ミント",mintIntro:"手順は2つです。まず自分のコレクションのコントラクトをデプロイし（1回だけ）、そこへ NFT をミントします。すべて自分のウォレットで署名します。",deployTitle:"1. コレクションを作る",deployNote:"標準的な ERC-721 コレクションのコントラクトを、あなたのウォレットからデプロイします。あなたが所有者になり、ミントできるのはあなただけです。このサイトが鍵や NFT を預かることはありません。デプロイにはガス代がかかります（自己負担）。",colNamePh:"コレクション名（例：My Art）",colSymbolPh:"シンボル（例：MYART）",deployBtn:"コレクションをデプロイ",mintOneTitle:"3. 詳細設定 — メタデータ URI でミント",mintOneNote:"標準コレクション用： 自分で用意したメタデータ URI でミントします（従来の方式）。宛先は上の受取アドレスです。",mintColLbl:"コレクション（自分が所有するもの）",recipientLbl:"受取アドレス",uriLbl:"メタデータ URI（https://… または ipfs://…）",mintBtn:"NFT をミント",colTypeLbl:"コレクションの形式",typeStandard:"標準 — トークンごとにメタデータを持つ",typeShared:"画像共有 — 全トークンで1つのメタデータ（同じ絵柄のコレクション向け・最安）",typeNote:"画像共有ではメタデータを契約内に1回だけ保存し、全トークンが同じ絵柄と名前になります。ミントは1回ごとに安く済みます。標準ではトークンごとに別のメタデータ URI を持てます。",simpleTitle:"2. かんたんミント — 画像を添付するだけ",simpleNote:"画像を添付して名前を付けるだけで、サイトがメタデータを作り、データ URI としてチェーン上に保存します（外部ホスティングもアカウントも不要）。画像はこのブラウザに保存されるので、同じ絵柄を再アップロードなしで何度でもミントできます。",imgLbl:"画像",nftNameLbl:"NFT の名前",nftNamePh:"例：My Art",descLbl:"説明（任意）",imgInfoOrig:"元の画像： {a} KB",imgInfoUsed:"保存する画像： {b} KB",estCost:"費用の目安 ≈ {x} QOMX（現在のガス価格での概算）",setImgBtn:"この画像をコレクションに設定（1回だけ）",mintImgBtn:"この画像でミント",copiesLbl:"個数",copiesNote:"1個ごとに別のトランザクションとウォレット確認が必要です。",needImage:"先に画像を添付してください。",needSetFirst:"先に上のボタンでこの画像をコレクションに設定してからミントしてください。",needName:"先に名前を付けてください。",imgSetOk:"コレクションに画像を設定しました。ミントできます。",settingImg:"画像を設定中…ウォレットを確認してください。",sharedAdvNote:"選択中のコレクションは画像共有形式です。メタデータは上の簡易セクションでコレクション全体に設定するため、ここでのトークンごとの URI 指定は使えません。",bigImgWarn:"画像が大きいです（保存サイズ {b} KB）。チェーン上の保存は高くつくため、小さい画像をおすすめします。",progressMinted:"{b} 個中 {a} 個をミントしました。",metaHelpTitle:"メタデータ URI とは？",metaHelp:"NFT の情報（名前、説明、画像）を示す小さな JSON ファイルへのリンクです。JSON と画像を先に IPFS や自分の置き場所へ上げてから、その JSON の URL をここへ貼ってください。このサイトはファイルを預かりません。",moreTools:"ほかのツール",toolAgg:"QOM アグリゲーター",toolFaucet:"QOM フォーセット",loading:"読み込み中…",noTokens:"このコレクションにトークンはありません。",notErc721:"そのアドレスは ERC-721 コントラクトではありません。",badAddress:"正しいアドレスを入力してください。",tokensWord:"トークン",contractWord:"コントラクト",showingFirst:"最初の {n} 件を表示しています。",metaFail:"メタデータを取得できません",unnamed:"名前なし",ownerWord:"所有者",noImage:"画像なし",needConnect:"先にウォレットを接続してください。",notOwner:"このコレクションの所有者はあなたのウォレットではありません（所有者： {a}）。",deployedOk:"コレクションをデプロイしました： {a}",deploying:"デプロイ中…ウォレットを確認してください。",minting:"ミント中…ウォレットを確認してください。",mintedOk:"トークン #{id} をミントし、{a} へ送りました。",fillAll:"すべての項目を入力してください。",artifactFail:"コレクションのコントラクト情報を読み込めなかったため、今はデプロイとミントができません。",txFailed:"トランザクションが失敗したか、拒否されました。",rpcError:"チェーンから読み取れませんでした（RPCエラー）。再読み込みしてください。",viewExplorer:"エクスプローラーで見る",footNote:"コミュニティによる開発で、公式のものではありません。· RPC: https://rpc.qomx.io · Chain ID: 33303 · ネイティブ: QOMX · コレクションは標準 ERC-721（OpenZeppelin）で、各作成者が自分のウォレットからデプロイします。"}
+en:{connect:"Connect Wallet",connected:"Connected",close:"Close",disconnect:"Disconnect",wrongChain:"Wrong network — switch to Qom chain (33303)",noWallet:"No wallet found. Open this page in your wallet's browser (e.g. MetaMask).",openInWallet:"Open in MetaMask",brandSub:"Marketplace & Mint",devNotice:"🚧 Under development — this site is experimental. Use at your own risk: you sign everything with your own wallet and pay your own gas.",tabMarket:"Market",tabMint:"Mint",marketTitle:"Browse NFTs",tradeNotice:"Trading is not available yet: listing and buying need a market contract, which has not been deployed. The plan is to let buyers pay in Q or QOMX (buyer's choice); who deploys the contract and the final rules are still being decided — for now this page is browse-only.",collectionLbl:"Collection",onlyMine:"Only mine",refresh:"Refresh",addColPh:"Add a collection by address (0x…)",addCol:"Add collection",searchPh:"Search by name, token ID or collection…",allCollections:"All collections",collectionsWord:"collections",statItems:"Items",statOwners:"Owners",statType:"Type",typeSharedShort:"Shared image",tradingChip:"Trading: not available yet",statusLbl:"Status",sortLbl:"Sort",sortIdAsc:"Token ID: low to high",sortIdDesc:"Token ID: high to low",filtersLbl:"Filters",noResults:"No tokens match your filters.",dlgDescription:"Description",dlgAttributes:"Attributes",dlgDetails:"Details",dlgContract:"Contract",dlgTokenId:"Token ID",dlgTokenUri:"Token URI",buyBtn:"Buy now",buyUnavailable:"Trading is not available yet — no market contract has been deployed, so nothing can be bought or sold here yet.",mintTitle:"Mint",mintIntro:"Two steps: deploy your own collection contract (once), then mint NFTs into it. Everything is signed by your wallet.",deployTitle:"1. Create your collection",deployNote:"Deploys a standard ERC-721 collection contract from YOUR wallet. You become its owner and the only minter. This site never holds your keys or your NFTs. Deployment costs gas, paid by you.",colNamePh:"Collection name (e.g. My Art)",colSymbolPh:"Symbol (e.g. MYART)",deployBtn:"Deploy my collection",mintOneTitle:"3. Advanced — mint with a metadata URI",mintOneNote:"For standard collections: mint with a metadata URI you prepared yourself (the original method). The NFT goes to the recipient above.",mintColLbl:"Collection (one you own)",recipientLbl:"Recipient address",uriLbl:"Metadata URI (https://… or ipfs://…)",mintBtn:"Mint NFT",colTypeLbl:"Collection type",typeStandard:"Standard — each token has its own metadata",typeShared:"Shared image — one metadata for all tokens (cheapest for same-art collections)",typeNote:"Shared-image collections store the metadata once, in the contract; every token then shows the same art and name, and each mint is cheap. Standard collections give every token its own metadata URI.",simpleTitle:"2. Simple mint — just attach an image",simpleNote:"Attach an image, name the NFT, and mint — the site builds the metadata and stores it on-chain as a data URI (no external hosting, no accounts). The image is kept in this browser, so the same art can be minted again without re-uploading.",imgLbl:"Image",nftNameLbl:"NFT name",nftNamePh:"e.g. My Art",descLbl:"Description (optional)",imgInfoOrig:"Original image: {a} KB",imgInfoUsed:"Stored image: {b} KB",estCost:"Estimated cost ≈ {x} QOMX (an estimate at the current gas price)",setImgBtn:"Set this image on the collection (one time)",mintImgBtn:"Mint with this image",copiesLbl:"Copies",copiesNote:"Each copy is a separate transaction with its own wallet confirmation.",needImage:"Attach an image first.",needSetFirst:"Set this image on the collection first (button above), then mint.",needName:"Give the NFT a name first.",imgSetOk:"Collection image set — you can mint with it now.",settingImg:"Setting the image… check your wallet.",sharedAdvNote:"The selected collection is a shared-image collection: its metadata is set for the whole collection in the simple section above, so per-token URIs don't apply here.",bigImgWarn:"This image is large ({b} KB stored). On-chain storage is expensive — a smaller image is recommended.",progressMinted:"Minted {a} of {b}.",metaHelpTitle:"What is a metadata URI?",metaHelp:"A link to a small JSON file describing the NFT (name, description, image). Upload the JSON and the image to IPFS or your own web space first, then paste the JSON's URL here. This site does not host files.",moreTools:"More tools",toolAgg:"QOM Aggregator",toolFaucet:"QOM Faucet",loading:"Loading…",noTokens:"No tokens found in this collection.",notErc721:"That address is not an ERC-721 contract.",badAddress:"Enter a valid address.",tokensWord:"tokens",contractWord:"contract",showingFirst:"Showing the first {n} tokens.",metaFail:"Metadata unavailable",unnamed:"Unnamed",ownerWord:"Owner",noImage:"No image",needConnect:"Connect your wallet first.",notOwner:"Your wallet does not own this collection (owner: {a}).",deployedOk:"Collection deployed: {a}",deploying:"Deploying… check your wallet.",minting:"Minting… check your wallet.",mintedOk:"Minted token #{id} — sent to {a}.",fillAll:"Fill in every field.",artifactFail:"The collection contract data failed to load, so deploy and mint are unavailable right now.",txFailed:"The transaction failed or was rejected.",rpcError:"Could not read from the chain (RPC error). Reload to retry.",viewExplorer:"View on the explorer",footNote:"Built by the community — not an official product. · RPC: https://rpc.qomx.io · Chain ID: 33303 · Native: QOMX · Collections are standard ERC-721 (OpenZeppelin), deployed by each creator from their own wallet."},
+ja:{connect:"ウォレット接続",connected:"接続中",close:"閉じる",disconnect:"切断",wrongChain:"ネットワークが違います。Qom chain（33303）に切り替えてください",noWallet:"ウォレットが見つかりません。ウォレット（MetaMask等）のブラウザで開いてください。",openInWallet:"MetaMaskで開く",brandSub:"マーケット＆ミント",devNotice:"🚧 開発中です。このサイトは試験的なものです。利用は自己責任でお願いします。署名はすべて自分のウォレットで行い、ガス代も自己負担です。",tabMarket:"マーケット",tabMint:"ミント",marketTitle:"NFT を見る",tradeNotice:"売買はまだできません。出品と購入にはマーケット用コントラクトが必要ですが、まだデプロイされていません。購入時の支払いは Q か QOMX を買い手が選べる形を予定していますが、誰がデプロイし、どういうルールにするかは検討中のため、当面は閲覧のみです。",collectionLbl:"コレクション",onlyMine:"自分のだけ",refresh:"更新",addColPh:"コレクションをアドレスで追加（0x…）",addCol:"コレクション追加",searchPh:"名前・トークンID・コレクションで検索…",allCollections:"すべてのコレクション",collectionsWord:"コレクション",statItems:"アイテム",statOwners:"所有者数",statType:"形式",typeSharedShort:"画像共有",tradingChip:"売買はまだできません",statusLbl:"状態",sortLbl:"並び替え",sortIdAsc:"トークンID： 小さい順",sortIdDesc:"トークンID： 大きい順",filtersLbl:"フィルター",noResults:"条件に合うトークンがありません。",dlgDescription:"説明",dlgAttributes:"属性",dlgDetails:"詳細",dlgContract:"コントラクト",dlgTokenId:"トークンID",dlgTokenUri:"トークンURI",buyBtn:"購入する",buyUnavailable:"売買はまだできません。マーケット用コントラクトが未デプロイのため、ここでは何も売買できません。",mintTitle:"ミント",mintIntro:"手順は2つです。まず自分のコレクションのコントラクトをデプロイし（1回だけ）、そこへ NFT をミントします。すべて自分のウォレットで署名します。",deployTitle:"1. コレクションを作る",deployNote:"標準的な ERC-721 コレクションのコントラクトを、あなたのウォレットからデプロイします。あなたが所有者になり、ミントできるのはあなただけです。このサイトが鍵や NFT を預かることはありません。デプロイにはガス代がかかります（自己負担）。",colNamePh:"コレクション名（例：My Art）",colSymbolPh:"シンボル（例：MYART）",deployBtn:"コレクションをデプロイ",mintOneTitle:"3. 詳細設定 — メタデータ URI でミント",mintOneNote:"標準コレクション用： 自分で用意したメタデータ URI でミントします（従来の方式）。宛先は上の受取アドレスです。",mintColLbl:"コレクション（自分が所有するもの）",recipientLbl:"受取アドレス",uriLbl:"メタデータ URI（https://… または ipfs://…）",mintBtn:"NFT をミント",colTypeLbl:"コレクションの形式",typeStandard:"標準 — トークンごとにメタデータを持つ",typeShared:"画像共有 — 全トークンで1つのメタデータ（同じ絵柄のコレクション向け・最安）",typeNote:"画像共有ではメタデータを契約内に1回だけ保存し、全トークンが同じ絵柄と名前になります。ミントは1回ごとに安く済みます。標準ではトークンごとに別のメタデータ URI を持てます。",simpleTitle:"2. かんたんミント — 画像を添付するだけ",simpleNote:"画像を添付して名前を付けるだけで、サイトがメタデータを作り、データ URI としてチェーン上に保存します（外部ホスティングもアカウントも不要）。画像はこのブラウザに保存されるので、同じ絵柄を再アップロードなしで何度でもミントできます。",imgLbl:"画像",nftNameLbl:"NFT の名前",nftNamePh:"例：My Art",descLbl:"説明（任意）",imgInfoOrig:"元の画像： {a} KB",imgInfoUsed:"保存する画像： {b} KB",estCost:"費用の目安 ≈ {x} QOMX（現在のガス価格での概算）",setImgBtn:"この画像をコレクションに設定（1回だけ）",mintImgBtn:"この画像でミント",copiesLbl:"個数",copiesNote:"1個ごとに別のトランザクションとウォレット確認が必要です。",needImage:"先に画像を添付してください。",needSetFirst:"先に上のボタンでこの画像をコレクションに設定してからミントしてください。",needName:"先に名前を付けてください。",imgSetOk:"コレクションに画像を設定しました。ミントできます。",settingImg:"画像を設定中…ウォレットを確認してください。",sharedAdvNote:"選択中のコレクションは画像共有形式です。メタデータは上の簡易セクションでコレクション全体に設定するため、ここでのトークンごとの URI 指定は使えません。",bigImgWarn:"画像が大きいです（保存サイズ {b} KB）。チェーン上の保存は高くつくため、小さい画像をおすすめします。",progressMinted:"{b} 個中 {a} 個をミントしました。",metaHelpTitle:"メタデータ URI とは？",metaHelp:"NFT の情報（名前、説明、画像）を示す小さな JSON ファイルへのリンクです。JSON と画像を先に IPFS や自分の置き場所へ上げてから、その JSON の URL をここへ貼ってください。このサイトはファイルを預かりません。",moreTools:"ほかのツール",toolAgg:"QOM アグリゲーター",toolFaucet:"QOM フォーセット",loading:"読み込み中…",noTokens:"このコレクションにトークンはありません。",notErc721:"そのアドレスは ERC-721 コントラクトではありません。",badAddress:"正しいアドレスを入力してください。",tokensWord:"トークン",contractWord:"コントラクト",showingFirst:"最初の {n} 件を表示しています。",metaFail:"メタデータを取得できません",unnamed:"名前なし",ownerWord:"所有者",noImage:"画像なし",needConnect:"先にウォレットを接続してください。",notOwner:"このコレクションの所有者はあなたのウォレットではありません（所有者： {a}）。",deployedOk:"コレクションをデプロイしました： {a}",deploying:"デプロイ中…ウォレットを確認してください。",minting:"ミント中…ウォレットを確認してください。",mintedOk:"トークン #{id} をミントし、{a} へ送りました。",fillAll:"すべての項目を入力してください。",artifactFail:"コレクションのコントラクト情報を読み込めなかったため、今はデプロイとミントができません。",txFailed:"トランザクションが失敗したか、拒否されました。",rpcError:"チェーンから読み取れませんでした（RPCエラー）。再読み込みしてください。",viewExplorer:"エクスプローラーで見る",footNote:"コミュニティによる開発で、公式のものではありません。· RPC: https://rpc.qomx.io · Chain ID: 33303 · ネイティブ: QOMX · コレクションは標準 ERC-721（OpenZeppelin）で、各作成者が自分のウォレットからデプロイします。"}
 };
 let lang = "en";
 try { lang = localStorage.getItem("qomnft-lang") || "en"; } catch (e) {}
@@ -32,6 +32,8 @@ let artifact = null;       // { abi, bytecode } of QomCollection (standard)
 let artifactShared = null; // { abi, bytecode } of QomCollectionShared (shared image)
 let colInfoCache = {};     // addr -> { name, symbol, enumerable }
 let loadSeq = 0;
+let marketSel = "ALL";     // selected collection address, or "ALL"
+let tokenCache = {};       // addr -> { info, tokens: [{id, owner, uri, meta}], total, capped, loaded, error }
 
 const readProvider = new ethers.JsonRpcProvider(CFG.rpc);
 const ERC721_READ = [
@@ -135,45 +137,172 @@ async function collectionTokenIds(c, info, latestBlock) {
 function setMsg(el, text) { el.textContent = text || ""; el.className = "msg"; }
 function setErr(el, text) { el.textContent = text || ""; el.className = "msg err"; }
 
+/* ---------- market: cache, strip, header, grid, item dialog ---------- */
+async function ensureCollectionLoaded(addr) {
+  const existing = tokenCache[addr];
+  if (existing && existing.loaded) return existing;
+  const info = await colInfo(addr);
+  const entry = { info, tokens: [], total: 0, capped: false, loaded: false, error: null };
+  tokenCache[addr] = entry;
+  if (!info.is721) { entry.error = "not721"; entry.loaded = true; return entry; }
+  const c = new ethers.Contract(addr, ERC721_READ, readProvider);
+  const latest = await readProvider.getBlockNumber();
+  const { ids, total, capped } = await collectionTokenIds(c, info, latest);
+  entry.total = total;
+  entry.capped = capped;
+  for (const id of ids) {
+    let owner = "";
+    try { owner = await c.ownerOf(id); } catch (e) { continue; }
+    let uri = "";
+    try { uri = await c.tokenURI(id); } catch (e) {}
+    const meta = await fetchMetadata(uri);
+    entry.tokens.push({ id, owner, uri, meta });
+  }
+  entry.loaded = true;
+  return entry;
+}
+function invalidateTokens(addr) { delete tokenCache[addr]; }
+
 async function loadMarket() {
-  const addr = $("colSelect").value;
-  const grid = $("grid");
-  grid.replaceChildren();
-  if (!addr) return;
   const seq = ++loadSeq;
-  setMsg($("marketMsg"), t("loading"));
-  $("colMeta").textContent = "";
+  renderCollectionStrip();
+  const addrs = marketSel === "ALL" ? registry() : [marketSel];
+  if (addrs.some((a) => !tokenCache[a] || !tokenCache[a].loaded)) setMsg($("marketMsg"), t("loading"));
   try {
-    const info = await colInfo(addr);
-    if (!info.is721) { setErr($("marketMsg"), t("notErc721")); return; }
-    const c = new ethers.Contract(addr, ERC721_READ, readProvider);
-    const latest = await readProvider.getBlockNumber();
-    const { ids, total, capped } = await collectionTokenIds(c, info, latest);
-    if (seq !== loadSeq) return;
-    $("colMeta").textContent = `${info.name || "?"} (${info.symbol || "?"}) · ${total} ${t("tokensWord")} · ${t("contractWord")} ${short(addr)}` + (capped ? " · " + t("showingFirst").replace("{n}", CFG.maxTokensShown) : "");
-    if (!ids.length) { setMsg($("marketMsg"), t("noTokens")); return; }
-    setMsg($("marketMsg"), "");
-    let shown = 0;
-    for (const id of ids) {
+    for (const addr of addrs) {
+      await ensureCollectionLoaded(addr);
       if (seq !== loadSeq) return;
-      let owner = "", uri = "";
-      try { owner = await c.ownerOf(id); } catch (e) { continue; }
-      if ($("onlyMine").checked && (!account || owner.toLowerCase() !== account.toLowerCase())) continue;
-      try { uri = await c.tokenURI(id); } catch (e) {}
-      const meta = await fetchMetadata(uri);
-      if (seq !== loadSeq) return;
-      grid.appendChild(tokenCard(id, owner, meta));
-      shown++;
     }
-    if (!shown) setMsg($("marketMsg"), t("noTokens"));
   } catch (e) {
     if (seq === loadSeq) setErr($("marketMsg"), t("rpcError"));
+    return;
+  }
+  if (seq !== loadSeq) return;
+  renderMarket();
+}
+
+function selectedAddrs() { return marketSel === "ALL" ? registry() : [marketSel]; }
+function renderOrLoad() {
+  if (selectedAddrs().every((a) => tokenCache[a] && tokenCache[a].loaded)) renderMarket();
+  else loadMarket();
+}
+function selectCollection(value) {
+  marketSel = value;
+  renderCollectionStrip();
+  renderOrLoad();
+}
+
+function renderCollectionStrip() {
+  const strip = $("colStrip");
+  if (!strip) return;
+  strip.replaceChildren();
+  const mkChip = (value, label) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "col-chip" + (marketSel === value ? " active" : "");
+    b.textContent = label;
+    b.addEventListener("click", () => selectCollection(value));
+    strip.appendChild(b);
+  };
+  mkChip("ALL", t("allCollections"));
+  for (const addr of registry()) {
+    const info = colInfoCache[addr];
+    mkChip(addr, info && info.is721 ? `${info.name || "?"} (${info.symbol || "?"}) · ${short(addr)}` : short(addr));
+    if (!info) colInfo(addr).then(() => renderCollectionStrip()).catch(() => {});
   }
 }
 
-function tokenCard(id, owner, meta) {
-  const card = document.createElement("div");
-  card.className = "nft-card";
+function tokenName(tok) {
+  return tok.meta && typeof tok.meta.name === "string" && tok.meta.name ? tok.meta.name : t("unnamed");
+}
+
+function visibleTokens() {
+  const q = $("searchInput").value.trim().toLowerCase();
+  const mine = $("onlyMine").checked;
+  const out = [];
+  for (const addr of selectedAddrs()) {
+    const entry = tokenCache[addr];
+    if (!entry || !entry.loaded || entry.error) continue;
+    for (const tok of entry.tokens) {
+      if (mine && (!account || !tok.owner || tok.owner.toLowerCase() !== account.toLowerCase())) continue;
+      if (q) {
+        const hay = (tokenName(tok) + " " + tok.id.toString() + " " + (entry.info.name || "") + " " + (entry.info.symbol || "")).toLowerCase();
+        if (!hay.includes(q)) continue;
+      }
+      out.push({ info: entry.info, tok });
+    }
+  }
+  const dir = $("sortSel").value === "desc" ? -1 : 1;
+  out.sort((a, b) => {
+    if (a.tok.id !== b.tok.id) return (a.tok.id < b.tok.id ? -1 : 1) * dir;
+    return a.info.addr < b.info.addr ? -1 : 1;
+  });
+  return out;
+}
+
+function renderHeader() {
+  let items = 0, anyLoaded = false;
+  const owners = new Set();
+  for (const a of selectedAddrs()) {
+    const e = tokenCache[a];
+    if (!e || !e.loaded || e.error) continue;
+    anyLoaded = true;
+    items += e.total;
+    for (const tok of e.tokens) if (tok.owner) owners.add(tok.owner.toLowerCase());
+  }
+  const link = $("colAddrLink");
+  if (marketSel === "ALL") {
+    $("colTitle").textContent = t("allCollections");
+    $("colSymbol").textContent = "";
+    link.textContent = "";
+    link.removeAttribute("href");
+    $("statType").textContent = "ERC-721";
+  } else {
+    const info = colInfoCache[marketSel];
+    const entry = tokenCache[marketSel];
+    $("colTitle").textContent = info && info.name ? info.name : short(marketSel);
+    $("colSymbol").textContent = info && info.symbol ? info.symbol : "";
+    link.textContent = short(marketSel);
+    link.href = CFG.explorer + "/address/" + marketSel;
+    $("statType").textContent = entry && entry.info && entry.info.shared ? t("typeSharedShort") : "ERC-721";
+  }
+  $("statItems").textContent = anyLoaded ? String(items) : "–";
+  $("statOwners").textContent = anyLoaded ? String(owners.size) : "–";
+}
+
+function renderColMeta() {
+  if (marketSel === "ALL") {
+    let total = 0, capped = false, loadedCount = 0;
+    for (const a of registry()) {
+      const e = tokenCache[a];
+      if (e && e.loaded && !e.error) { total += e.total; loadedCount++; if (e.capped) capped = true; }
+    }
+    $("colMeta").textContent = loadedCount ? `${registry().length} ${t("collectionsWord")} · ${total} ${t("tokensWord")}` + (capped ? " · " + t("showingFirst").replace("{n}", CFG.maxTokensShown) : "") : "";
+    return;
+  }
+  const info = colInfoCache[marketSel];
+  const e = tokenCache[marketSel];
+  if (!info || !e || !e.loaded || e.error) { $("colMeta").textContent = ""; return; }
+  $("colMeta").textContent = `${info.name || "?"} (${info.symbol || "?"}) · ${e.total} ${t("tokensWord")} · ${t("contractWord")} ${short(marketSel)}` + (e.capped ? " · " + t("showingFirst").replace("{n}", CFG.maxTokensShown) : "");
+}
+
+function renderMarket() {
+  renderHeader();
+  renderColMeta();
+  const grid = $("grid");
+  grid.replaceChildren();
+  if (marketSel !== "ALL") {
+    const e = tokenCache[marketSel];
+    if (e && e.loaded && e.error === "not721") { setErr($("marketMsg"), t("notErc721")); return; }
+  }
+  const list = visibleTokens();
+  for (const item of list) grid.appendChild(tokenCard(item.info, item.tok));
+  const anyTokens = selectedAddrs().some((a) => { const e = tokenCache[a]; return e && e.loaded && !e.error && e.tokens.length > 0; });
+  if (!list.length) setMsg($("marketMsg"), anyTokens ? t("noResults") : t("noTokens"));
+  else setMsg($("marketMsg"), "");
+}
+
+function artworkEl(meta) {
   const name = meta && typeof meta.name === "string" && meta.name ? meta.name : t("unnamed");
   const imgUrl = meta && typeof meta.image === "string" ? ipfsToHttp(meta.image) : "";
   if (imgUrl && (/^https:\/\//.test(imgUrl) || (/^data:image\/(png|jpeg|gif|webp|svg\+xml);base64,/.test(imgUrl) && imgUrl.length <= 600000))) {
@@ -182,57 +311,111 @@ function tokenCard(id, owner, meta) {
     img.loading = "lazy";
     img.src = imgUrl;
     img.onerror = () => { const d = document.createElement("div"); d.className = "nft-noimg"; d.textContent = t("noImage"); img.replaceWith(d); };
-    card.appendChild(img);
-  } else {
-    const d = document.createElement("div");
-    d.className = "nft-noimg";
-    d.textContent = meta ? t("noImage") : t("metaFail");
-    card.appendChild(d);
+    return img;
   }
+  const d = document.createElement("div");
+  d.className = "nft-noimg";
+  d.textContent = meta ? t("noImage") : t("metaFail");
+  return d;
+}
+
+function tokenCard(info, tok) {
+  const card = document.createElement("div");
+  card.className = "nft-card";
+  card.appendChild(artworkEl(tok.meta));
+  const body = document.createElement("div");
+  body.className = "nft-card-body";
+  const col = document.createElement("div");
+  col.className = "nft-col";
+  col.textContent = info.name || short(info.addr);
+  body.appendChild(col);
   const nm = document.createElement("div");
   nm.className = "nft-name";
-  nm.textContent = name + " ";
+  nm.textContent = tokenName(tok) + " ";
   const idSpan = document.createElement("span");
   idSpan.className = "nft-id";
-  idSpan.textContent = "#" + id.toString();
+  idSpan.textContent = "#" + tok.id.toString();
   nm.appendChild(idSpan);
-  card.appendChild(nm);
+  body.appendChild(nm);
   const ow = document.createElement("div");
   ow.className = "nft-owner";
-  ow.textContent = t("ownerWord") + ": " + short(owner);
-  card.appendChild(ow);
+  ow.textContent = t("ownerWord") + ": " + short(tok.owner);
+  body.appendChild(ow);
   const chip = document.createElement("span");
   chip.className = "chip";
   chip.textContent = "ERC-721";
-  card.appendChild(chip);
+  body.appendChild(chip);
+  card.appendChild(body);
+  card.addEventListener("click", () => openItem(info, tok));
   return card;
 }
 
-/* ---------- selects ---------- */
+function openItem(info, tok) {
+  const media = $("itemMedia");
+  media.replaceChildren(artworkEl(tok.meta));
+  $("itemCollection").textContent = (info.name || "?") + (info.symbol ? " (" + info.symbol + ")" : "");
+  $("itemName").textContent = tokenName(tok) + " #" + tok.id.toString();
+  const ownerLink = $("itemOwner");
+  ownerLink.textContent = tok.owner || "";
+  if (tok.owner) ownerLink.href = CFG.explorer + "/address/" + tok.owner; else ownerLink.removeAttribute("href");
+  const desc = tok.meta && typeof tok.meta.description === "string" ? tok.meta.description : "";
+  $("itemDescWrap").hidden = !desc;
+  $("itemDesc").textContent = desc;
+  const attrs = tok.meta && Array.isArray(tok.meta.attributes) ? tok.meta.attributes : [];
+  const attrGrid = $("itemAttrs");
+  attrGrid.replaceChildren();
+  let attrCount = 0;
+  for (const a of attrs) {
+    if (!a || typeof a !== "object" || a.trait_type == null || a.value == null) continue;
+    const box = document.createElement("div");
+    box.className = "attr";
+    const tt = document.createElement("span");
+    tt.className = "attr-type";
+    tt.textContent = String(a.trait_type);
+    const vv = document.createElement("span");
+    vv.className = "attr-value";
+    vv.textContent = String(a.value);
+    box.appendChild(tt);
+    box.appendChild(vv);
+    attrGrid.appendChild(box);
+    attrCount++;
+  }
+  $("itemAttrsWrap").hidden = attrCount === 0;
+  const cLink = $("itemContract");
+  cLink.textContent = info.addr;
+  cLink.href = CFG.explorer + "/address/" + info.addr;
+  $("itemTokenId").textContent = tok.id.toString();
+  const uriLink = $("itemUri");
+  if (tok.uri) {
+    uriLink.textContent = tok.uri.length > 72 ? tok.uri.slice(0, 72) + "…" : tok.uri;
+    uriLink.href = ipfsToHttp(tok.uri);
+    uriLink.hidden = false;
+  } else { uriLink.hidden = true; }
+  $("itemDlg").showModal();
+}
+
+/* ---------- selects (mint) + collection strip ---------- */
 async function rebuildSelects() {
   const regs = registry();
-  const colSel = $("colSelect"), mintSel = $("mintColSelect");
-  const prevCol = colSel.value, prevMint = mintSel.value;
-  colSel.replaceChildren(); mintSel.replaceChildren();
+  const mintSel = $("mintColSelect");
+  const prevMint = mintSel.value;
+  mintSel.replaceChildren();
   for (const addr of regs) {
-    for (const sel of [colSel, mintSel]) {
-      const o = document.createElement("option");
-      o.value = addr;
-      o.textContent = short(addr);
-      sel.appendChild(o);
-    }
+    const o = document.createElement("option");
+    o.value = addr;
+    o.textContent = short(addr);
+    mintSel.appendChild(o);
   }
-  if (prevCol && regs.includes(prevCol)) colSel.value = prevCol;
   if (prevMint && regs.includes(prevMint)) mintSel.value = prevMint;
+  renderCollectionStrip();
   // Fill in names as they resolve (labels only; values stay addresses).
   for (const addr of regs) {
     colInfo(addr).then((info) => {
       if (!info.is721) return;
       const label = `${info.name || "?"} (${info.symbol || "?"}) · ${short(addr)}`;
-      for (const sel of [colSel, mintSel]) {
-        const o = sel.querySelector(`option[value="${addr}"]`);
-        if (o) o.textContent = label;
-      }
+      const o = mintSel.querySelector(`option[value="${addr}"]`);
+      if (o) o.textContent = label;
+      renderCollectionStrip();
     }).catch(() => {});
   }
 }
@@ -270,7 +453,7 @@ async function onDeploy() {
     registryAdd(addr);
     delete colInfoCache[addr];
     await rebuildSelects();
-    $("colSelect").value = addr;
+    marketSel = addr; invalidateTokens(addr);
     $("mintColSelect").value = addr;
     setMsg($("deployMsg"), t("deployedOk").replace("{a}", addr));
     appendExplorerLink($("deployMsg"), tx.hash);
@@ -426,19 +609,26 @@ function showTab(name) {
 document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
 $("langBtn").addEventListener("click", () => setLang(lang === "en" ? "ja" : "en"));
 $("themeBtn").addEventListener("click", toggleTheme);
-$("colSelect").addEventListener("change", loadMarket);
-$("onlyMine").addEventListener("change", loadMarket);
-$("refreshBtn").addEventListener("click", () => { delete colInfoCache[$("colSelect").value]; loadMarket(); });
+$("onlyMine").addEventListener("change", renderOrLoad);
+$("sortSel").addEventListener("change", () => renderMarket());
+$("searchInput").addEventListener("input", () => renderMarket());
+$("filterToggle").addEventListener("click", () => $("sidebar").classList.toggle("open"));
+$("itemClose").addEventListener("click", () => $("itemDlg").close());
+$("refreshBtn").addEventListener("click", () => {
+  for (const a of selectedAddrs()) { delete colInfoCache[a]; invalidateTokens(a); }
+  loadMarket();
+});
 $("addColBtn").addEventListener("click", async () => {
   const raw = $("addColAddr").value.trim();
   if (!ethers.isAddress(raw)) return setErr($("marketMsg"), t("badAddress"));
   const addr = ethers.getAddress(raw);
   delete colInfoCache[addr];
+  invalidateTokens(addr);
   const info = await colInfo(addr);
   if (!info.is721) return setErr($("marketMsg"), t("notErc721"));
   registryAdd(addr);
   await rebuildSelects();
-  $("colSelect").value = addr;
+  marketSel = addr;
   $("addColAddr").value = "";
   loadMarket();
 });
