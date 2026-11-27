@@ -167,7 +167,11 @@ async function loadMarket() {
   const seq = ++loadSeq;
   renderCollectionStrip();
   const addrs = marketSel === "ALL" ? registry() : [marketSel];
-  if (addrs.some((a) => !tokenCache[a] || !tokenCache[a].loaded)) setMsg($("marketMsg"), t("loading"));
+  // loadMarket() is the refresh entry point (init, connect, language change,
+  // mint completion, Refresh button): re-read the current selection so newly
+  // minted tokens show up. Chip switching / search / sort stay cache-only.
+  for (const a of addrs) invalidateTokens(a);
+  if (addrs.length) setMsg($("marketMsg"), t("loading"));
   try {
     for (const addr of addrs) {
       await ensureCollectionLoaded(addr);
