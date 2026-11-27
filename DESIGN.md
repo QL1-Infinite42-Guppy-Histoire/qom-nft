@@ -41,6 +41,29 @@ Options considered:
 Metadata: creators supply a per-token URI (https or ipfs) pointing to a JSON
 (`name` / `description` / `image`). The site does not host files.
 
+### 2.1 Simple mint (attach an image) — storage options compared
+
+Added 2026-11-27 at the owner's request: a simple flow where the creator
+attaches an image and the site builds the metadata. Where the image and
+metadata live is the real design question; measured on this chain
+(gasPrice ≈ 53,571 gwei, local Ganache gas measurement, 2026-11-27):
+
+| Option | Cost shape | Constraints |
+|---|---|---|
+| **Data URI per token** (metadata JSON incl. base64 image stored in each tokenURI) | ≈118k gas + ~705 gas per URI char: a 1 KB image ≈ 79 QOMX **per mint**, 4 KB ≈ 287 QOMX per mint | No external service, no keys, permanent while the chain lives. But every mint re-pays the full storage — the worst fit for minting the same art many times. Block gas limit (100M) is not the binding constraint; cost is. |
+| **Shared-image collection** (one metadata URI stored once in the contract; every token returns it) | Same data URI stored **once** (≈285 QOMX for a 4 KB image), then ≈3.3 QOMX per mint | Perfect for the stated use case (one art, many tokens). All tokens share name + image (token IDs still differ). Implemented as the second collection template, `QomCollectionShared` (tests 7/7). |
+| **IPFS via a pinning service, creator's own API key** | Mint is cheap (≈6 QOMX, short ipfs:// URI); the service may cost money | Needs the creator's account + API key pasted into the browser (key handling risk; a restricted key is a must), the service's CORS/API shape, and the pin must be maintained or the image can disappear. **NOT built — whether to support a pinning service, and which one, is an owner decision (§4).** |
+| Creator's own https hosting | Cheap mint, full control | Creator must run hosting; link rot is the creator's problem. Already possible via the advanced URI flow. |
+
+**Built:** the simple flow generates the metadata in the browser
+(auto-downscaling images over 8 KB to ≤256 px), shows the stored size and
+an estimated cost at the live gas price before signing, and keeps the
+image in the browser (localStorage) so the same art mints again without
+re-uploading — with a copies field (each copy is its own transaction and
+confirmation). It works with both templates: per-token data URIs for
+standard collections, set-once + cheap mints for shared collections. The
+original URI flow remains as "Advanced".
+
 ## 3. Marketplace design (frontend built; contract NOT deployed)
 
 Trustless fixed-price trading needs a market contract:
@@ -115,6 +138,10 @@ always one of the seller's two stated prices, exactly as listed.
    separate phase, like the QOM DEX limit orders.
 2. **Shared collection:** is (a) per-creator self-deploy enough, or is a
    shared/factory model wanted later?
+2b. **Pinning service (§2.1):** should the simple mint also support IPFS
+   pinning with the creator's own API key (e.g. Pinata)? If yes, which
+   service, and may the key be remembered in the browser (localStorage)
+   or must it be entered every time? Not built until decided.
 3. **Domain:** the site is on GitHub Pages
    (`ql1-infinite42-guppy-histoire.github.io/qom-nft/`). A subdomain such as
    `nft.qomdex.com` would need owner-side Cloudflare DNS + a Pages custom

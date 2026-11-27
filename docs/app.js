@@ -15,8 +15,8 @@ const CFG = {
 };
 
 const I18N = {
-en:{connect:"Connect Wallet",connected:"Connected",close:"Close",disconnect:"Disconnect",wrongChain:"Wrong network — switch to Qom chain (33303)",noWallet:"No wallet found. Open this page in your wallet's browser (e.g. MetaMask).",openInWallet:"Open in MetaMask",brandSub:"Marketplace & Mint",devNotice:"🚧 Under development — this site is experimental. Use at your own risk: you sign everything with your own wallet and pay your own gas.",tabMarket:"Market",tabMint:"Mint",marketTitle:"Browse NFTs",tradeNotice:"Trading is not available yet: listing and buying need a market contract, which has not been deployed. The plan is to let buyers pay in Q or QOMX (buyer's choice); who deploys the contract and the final rules are still being decided — for now this page is browse-only.",collectionLbl:"Collection",onlyMine:"Only mine",refresh:"Refresh",addColPh:"Add a collection by address (0x…)",addCol:"Add collection",mintTitle:"Mint",mintIntro:"Two steps: deploy your own collection contract (once), then mint NFTs into it. Everything is signed by your wallet.",deployTitle:"1. Create your collection",deployNote:"Deploys a standard ERC-721 collection contract from YOUR wallet. You become its owner and the only minter. This site never holds your keys or your NFTs. Deployment costs gas, paid by you.",colNamePh:"Collection name (e.g. My Art)",colSymbolPh:"Symbol (e.g. MYART)",deployBtn:"Deploy my collection",mintOneTitle:"2. Mint an NFT",mintOneNote:"Mint from a collection you own. The NFT goes straight to the recipient's wallet.",mintColLbl:"Collection (one you own)",recipientLbl:"Recipient address",uriLbl:"Metadata URI (https://… or ipfs://…)",mintBtn:"Mint NFT",metaHelpTitle:"What is a metadata URI?",metaHelp:"A link to a small JSON file describing the NFT (name, description, image). Upload the JSON and the image to IPFS or your own web space first, then paste the JSON's URL here. This site does not host files.",moreTools:"More tools",toolAgg:"QOM Aggregator",toolFaucet:"QOM Faucet",loading:"Loading…",noTokens:"No tokens found in this collection.",notErc721:"That address is not an ERC-721 contract.",badAddress:"Enter a valid address.",tokensWord:"tokens",contractWord:"contract",showingFirst:"Showing the first {n} tokens.",metaFail:"Metadata unavailable",unnamed:"Unnamed",ownerWord:"Owner",noImage:"No image",needConnect:"Connect your wallet first.",notOwner:"Your wallet does not own this collection (owner: {a}).",deployedOk:"Collection deployed: {a}",deploying:"Deploying… check your wallet.",minting:"Minting… check your wallet.",mintedOk:"Minted token #{id} — sent to {a}.",fillAll:"Fill in every field.",artifactFail:"The collection contract data failed to load, so deploy and mint are unavailable right now.",txFailed:"The transaction failed or was rejected.",rpcError:"Could not read from the chain (RPC error). Reload to retry.",viewExplorer:"View on the explorer",footNote:"Built by the community — not an official product. · RPC: https://rpc.qomx.io · Chain ID: 33303 · Native: QOMX · Collections are standard ERC-721 (OpenZeppelin), deployed by each creator from their own wallet."},
-ja:{connect:"ウォレット接続",connected:"接続中",close:"閉じる",disconnect:"切断",wrongChain:"ネットワークが違います。Qom chain（33303）に切り替えてください",noWallet:"ウォレットが見つかりません。ウォレット（MetaMask等）のブラウザで開いてください。",openInWallet:"MetaMaskで開く",brandSub:"マーケット＆ミント",devNotice:"🚧 開発中です。このサイトは試験的なものです。利用は自己責任でお願いします。署名はすべて自分のウォレットで行い、ガス代も自己負担です。",tabMarket:"マーケット",tabMint:"ミント",marketTitle:"NFT を見る",tradeNotice:"売買はまだできません。出品と購入にはマーケット用コントラクトが必要ですが、まだデプロイされていません。購入時の支払いは Q か QOMX を買い手が選べる形を予定していますが、誰がデプロイし、どういうルールにするかは検討中のため、当面は閲覧のみです。",collectionLbl:"コレクション",onlyMine:"自分のだけ",refresh:"更新",addColPh:"コレクションをアドレスで追加（0x…）",addCol:"コレクション追加",mintTitle:"ミント",mintIntro:"手順は2つです。まず自分のコレクションのコントラクトをデプロイし（1回だけ）、そこへ NFT をミントします。すべて自分のウォレットで署名します。",deployTitle:"1. コレクションを作る",deployNote:"標準的な ERC-721 コレクションのコントラクトを、あなたのウォレットからデプロイします。あなたが所有者になり、ミントできるのはあなただけです。このサイトが鍵や NFT を預かることはありません。デプロイにはガス代がかかります（自己負担）。",colNamePh:"コレクション名（例：My Art）",colSymbolPh:"シンボル（例：MYART）",deployBtn:"コレクションをデプロイ",mintOneTitle:"2. NFT をミントする",mintOneNote:"自分が所有するコレクションからミントします。NFT は受取人のウォレットへ直接届きます。",mintColLbl:"コレクション（自分が所有するもの）",recipientLbl:"受取アドレス",uriLbl:"メタデータ URI（https://… または ipfs://…）",mintBtn:"NFT をミント",metaHelpTitle:"メタデータ URI とは？",metaHelp:"NFT の情報（名前、説明、画像）を示す小さな JSON ファイルへのリンクです。JSON と画像を先に IPFS や自分の置き場所へ上げてから、その JSON の URL をここへ貼ってください。このサイトはファイルを預かりません。",moreTools:"ほかのツール",toolAgg:"QOM アグリゲーター",toolFaucet:"QOM フォーセット",loading:"読み込み中…",noTokens:"このコレクションにトークンはありません。",notErc721:"そのアドレスは ERC-721 コントラクトではありません。",badAddress:"正しいアドレスを入力してください。",tokensWord:"トークン",contractWord:"コントラクト",showingFirst:"最初の {n} 件を表示しています。",metaFail:"メタデータを取得できません",unnamed:"名前なし",ownerWord:"所有者",noImage:"画像なし",needConnect:"先にウォレットを接続してください。",notOwner:"このコレクションの所有者はあなたのウォレットではありません（所有者： {a}）。",deployedOk:"コレクションをデプロイしました： {a}",deploying:"デプロイ中…ウォレットを確認してください。",minting:"ミント中…ウォレットを確認してください。",mintedOk:"トークン #{id} をミントし、{a} へ送りました。",fillAll:"すべての項目を入力してください。",artifactFail:"コレクションのコントラクト情報を読み込めなかったため、今はデプロイとミントができません。",txFailed:"トランザクションが失敗したか、拒否されました。",rpcError:"チェーンから読み取れませんでした（RPCエラー）。再読み込みしてください。",viewExplorer:"エクスプローラーで見る",footNote:"コミュニティによる開発で、公式のものではありません。· RPC: https://rpc.qomx.io · Chain ID: 33303 · ネイティブ: QOMX · コレクションは標準 ERC-721（OpenZeppelin）で、各作成者が自分のウォレットからデプロイします。"}
+en:{connect:"Connect Wallet",connected:"Connected",close:"Close",disconnect:"Disconnect",wrongChain:"Wrong network — switch to Qom chain (33303)",noWallet:"No wallet found. Open this page in your wallet's browser (e.g. MetaMask).",openInWallet:"Open in MetaMask",brandSub:"Marketplace & Mint",devNotice:"🚧 Under development — this site is experimental. Use at your own risk: you sign everything with your own wallet and pay your own gas.",tabMarket:"Market",tabMint:"Mint",marketTitle:"Browse NFTs",tradeNotice:"Trading is not available yet: listing and buying need a market contract, which has not been deployed. The plan is to let buyers pay in Q or QOMX (buyer's choice); who deploys the contract and the final rules are still being decided — for now this page is browse-only.",collectionLbl:"Collection",onlyMine:"Only mine",refresh:"Refresh",addColPh:"Add a collection by address (0x…)",addCol:"Add collection",mintTitle:"Mint",mintIntro:"Two steps: deploy your own collection contract (once), then mint NFTs into it. Everything is signed by your wallet.",deployTitle:"1. Create your collection",deployNote:"Deploys a standard ERC-721 collection contract from YOUR wallet. You become its owner and the only minter. This site never holds your keys or your NFTs. Deployment costs gas, paid by you.",colNamePh:"Collection name (e.g. My Art)",colSymbolPh:"Symbol (e.g. MYART)",deployBtn:"Deploy my collection",mintOneTitle:"3. Advanced — mint with a metadata URI",mintOneNote:"For standard collections: mint with a metadata URI you prepared yourself (the original method). The NFT goes to the recipient above.",mintColLbl:"Collection (one you own)",recipientLbl:"Recipient address",uriLbl:"Metadata URI (https://… or ipfs://…)",mintBtn:"Mint NFT",colTypeLbl:"Collection type",typeStandard:"Standard — each token has its own metadata",typeShared:"Shared image — one metadata for all tokens (cheapest for same-art collections)",typeNote:"Shared-image collections store the metadata once, in the contract; every token then shows the same art and name, and each mint is cheap. Standard collections give every token its own metadata URI.",simpleTitle:"2. Simple mint — just attach an image",simpleNote:"Attach an image, name the NFT, and mint — the site builds the metadata and stores it on-chain as a data URI (no external hosting, no accounts). The image is kept in this browser, so the same art can be minted again without re-uploading.",imgLbl:"Image",nftNameLbl:"NFT name",nftNamePh:"e.g. My Art",descLbl:"Description (optional)",imgInfoOrig:"Original image: {a} KB",imgInfoUsed:"Stored image: {b} KB",estCost:"Estimated cost ≈ {x} QOMX (an estimate at the current gas price)",setImgBtn:"Set this image on the collection (one time)",mintImgBtn:"Mint with this image",copiesLbl:"Copies",copiesNote:"Each copy is a separate transaction with its own wallet confirmation.",needImage:"Attach an image first.",needSetFirst:"Set this image on the collection first (button above), then mint.",needName:"Give the NFT a name first.",imgSetOk:"Collection image set — you can mint with it now.",settingImg:"Setting the image… check your wallet.",sharedAdvNote:"The selected collection is a shared-image collection: its metadata is set for the whole collection in the simple section above, so per-token URIs don't apply here.",bigImgWarn:"This image is large ({b} KB stored). On-chain storage is expensive — a smaller image is recommended.",progressMinted:"Minted {a} of {b}.",metaHelpTitle:"What is a metadata URI?",metaHelp:"A link to a small JSON file describing the NFT (name, description, image). Upload the JSON and the image to IPFS or your own web space first, then paste the JSON's URL here. This site does not host files.",moreTools:"More tools",toolAgg:"QOM Aggregator",toolFaucet:"QOM Faucet",loading:"Loading…",noTokens:"No tokens found in this collection.",notErc721:"That address is not an ERC-721 contract.",badAddress:"Enter a valid address.",tokensWord:"tokens",contractWord:"contract",showingFirst:"Showing the first {n} tokens.",metaFail:"Metadata unavailable",unnamed:"Unnamed",ownerWord:"Owner",noImage:"No image",needConnect:"Connect your wallet first.",notOwner:"Your wallet does not own this collection (owner: {a}).",deployedOk:"Collection deployed: {a}",deploying:"Deploying… check your wallet.",minting:"Minting… check your wallet.",mintedOk:"Minted token #{id} — sent to {a}.",fillAll:"Fill in every field.",artifactFail:"The collection contract data failed to load, so deploy and mint are unavailable right now.",txFailed:"The transaction failed or was rejected.",rpcError:"Could not read from the chain (RPC error). Reload to retry.",viewExplorer:"View on the explorer",footNote:"Built by the community — not an official product. · RPC: https://rpc.qomx.io · Chain ID: 33303 · Native: QOMX · Collections are standard ERC-721 (OpenZeppelin), deployed by each creator from their own wallet."},
+ja:{connect:"ウォレット接続",connected:"接続中",close:"閉じる",disconnect:"切断",wrongChain:"ネットワークが違います。Qom chain（33303）に切り替えてください",noWallet:"ウォレットが見つかりません。ウォレット（MetaMask等）のブラウザで開いてください。",openInWallet:"MetaMaskで開く",brandSub:"マーケット＆ミント",devNotice:"🚧 開発中です。このサイトは試験的なものです。利用は自己責任でお願いします。署名はすべて自分のウォレットで行い、ガス代も自己負担です。",tabMarket:"マーケット",tabMint:"ミント",marketTitle:"NFT を見る",tradeNotice:"売買はまだできません。出品と購入にはマーケット用コントラクトが必要ですが、まだデプロイされていません。購入時の支払いは Q か QOMX を買い手が選べる形を予定していますが、誰がデプロイし、どういうルールにするかは検討中のため、当面は閲覧のみです。",collectionLbl:"コレクション",onlyMine:"自分のだけ",refresh:"更新",addColPh:"コレクションをアドレスで追加（0x…）",addCol:"コレクション追加",mintTitle:"ミント",mintIntro:"手順は2つです。まず自分のコレクションのコントラクトをデプロイし（1回だけ）、そこへ NFT をミントします。すべて自分のウォレットで署名します。",deployTitle:"1. コレクションを作る",deployNote:"標準的な ERC-721 コレクションのコントラクトを、あなたのウォレットからデプロイします。あなたが所有者になり、ミントできるのはあなただけです。このサイトが鍵や NFT を預かることはありません。デプロイにはガス代がかかります（自己負担）。",colNamePh:"コレクション名（例：My Art）",colSymbolPh:"シンボル（例：MYART）",deployBtn:"コレクションをデプロイ",mintOneTitle:"3. 詳細設定 — メタデータ URI でミント",mintOneNote:"標準コレクション用： 自分で用意したメタデータ URI でミントします（従来の方式）。宛先は上の受取アドレスです。",mintColLbl:"コレクション（自分が所有するもの）",recipientLbl:"受取アドレス",uriLbl:"メタデータ URI（https://… または ipfs://…）",mintBtn:"NFT をミント",colTypeLbl:"コレクションの形式",typeStandard:"標準 — トークンごとにメタデータを持つ",typeShared:"画像共有 — 全トークンで1つのメタデータ（同じ絵柄のコレクション向け・最安）",typeNote:"画像共有ではメタデータを契約内に1回だけ保存し、全トークンが同じ絵柄と名前になります。ミントは1回ごとに安く済みます。標準ではトークンごとに別のメタデータ URI を持てます。",simpleTitle:"2. かんたんミント — 画像を添付するだけ",simpleNote:"画像を添付して名前を付けるだけで、サイトがメタデータを作り、データ URI としてチェーン上に保存します（外部ホスティングもアカウントも不要）。画像はこのブラウザに保存されるので、同じ絵柄を再アップロードなしで何度でもミントできます。",imgLbl:"画像",nftNameLbl:"NFT の名前",nftNamePh:"例：My Art",descLbl:"説明（任意）",imgInfoOrig:"元の画像： {a} KB",imgInfoUsed:"保存する画像： {b} KB",estCost:"費用の目安 ≈ {x} QOMX（現在のガス価格での概算）",setImgBtn:"この画像をコレクションに設定（1回だけ）",mintImgBtn:"この画像でミント",copiesLbl:"個数",copiesNote:"1個ごとに別のトランザクションとウォレット確認が必要です。",needImage:"先に画像を添付してください。",needSetFirst:"先に上のボタンでこの画像をコレクションに設定してからミントしてください。",needName:"先に名前を付けてください。",imgSetOk:"コレクションに画像を設定しました。ミントできます。",settingImg:"画像を設定中…ウォレットを確認してください。",sharedAdvNote:"選択中のコレクションは画像共有形式です。メタデータは上の簡易セクションでコレクション全体に設定するため、ここでのトークンごとの URI 指定は使えません。",bigImgWarn:"画像が大きいです（保存サイズ {b} KB）。チェーン上の保存は高くつくため、小さい画像をおすすめします。",progressMinted:"{b} 個中 {a} 個をミントしました。",metaHelpTitle:"メタデータ URI とは？",metaHelp:"NFT の情報（名前、説明、画像）を示す小さな JSON ファイルへのリンクです。JSON と画像を先に IPFS や自分の置き場所へ上げてから、その JSON の URL をここへ貼ってください。このサイトはファイルを預かりません。",moreTools:"ほかのツール",toolAgg:"QOM アグリゲーター",toolFaucet:"QOM フォーセット",loading:"読み込み中…",noTokens:"このコレクションにトークンはありません。",notErc721:"そのアドレスは ERC-721 コントラクトではありません。",badAddress:"正しいアドレスを入力してください。",tokensWord:"トークン",contractWord:"コントラクト",showingFirst:"最初の {n} 件を表示しています。",metaFail:"メタデータを取得できません",unnamed:"名前なし",ownerWord:"所有者",noImage:"画像なし",needConnect:"先にウォレットを接続してください。",notOwner:"このコレクションの所有者はあなたのウォレットではありません（所有者： {a}）。",deployedOk:"コレクションをデプロイしました： {a}",deploying:"デプロイ中…ウォレットを確認してください。",minting:"ミント中…ウォレットを確認してください。",mintedOk:"トークン #{id} をミントし、{a} へ送りました。",fillAll:"すべての項目を入力してください。",artifactFail:"コレクションのコントラクト情報を読み込めなかったため、今はデプロイとミントができません。",txFailed:"トランザクションが失敗したか、拒否されました。",rpcError:"チェーンから読み取れませんでした（RPCエラー）。再読み込みしてください。",viewExplorer:"エクスプローラーで見る",footNote:"コミュニティによる開発で、公式のものではありません。· RPC: https://rpc.qomx.io · Chain ID: 33303 · ネイティブ: QOMX · コレクションは標準 ERC-721（OpenZeppelin）で、各作成者が自分のウォレットからデプロイします。"}
 };
 let lang = "en";
 try { lang = localStorage.getItem("qomnft-lang") || "en"; } catch (e) {}
@@ -28,7 +28,8 @@ const short = (a) => (a && a.length > 14 ? a.slice(0, 6) + "…" + a.slice(-4) :
 let provider = null;       // ethers BrowserProvider (injected)
 let signer = null;
 let account = null;
-let artifact = null;       // { abi, bytecode } of QomCollection
+let artifact = null;       // { abi, bytecode } of QomCollection (standard)
+let artifactShared = null; // { abi, bytecode } of QomCollectionShared (shared image)
 let colInfoCache = {};     // addr -> { name, symbol, enumerable }
 let loadSeq = 0;
 
@@ -75,6 +76,12 @@ async function colInfo(addr) {
     try { info.name = await c.name(); } catch (e) {}
     try { info.symbol = await c.symbol(); } catch (e) {}
     try { info.enumerable = await c.supportsInterface("0x780e9d63"); } catch (e) {}
+    // Shared-image collections expose sharedURI(); probe for it.
+    try {
+      const sc = new ethers.Contract(addr, ["function sharedURI() view returns (string)"], readProvider);
+      info.sharedURI = await sc.sharedURI();
+      info.shared = true;
+    } catch (e) { info.shared = false; }
   }
   colInfoCache[addr] = info;
   return info;
@@ -169,7 +176,7 @@ function tokenCard(id, owner, meta) {
   card.className = "nft-card";
   const name = meta && typeof meta.name === "string" && meta.name ? meta.name : t("unnamed");
   const imgUrl = meta && typeof meta.image === "string" ? ipfsToHttp(meta.image) : "";
-  if (imgUrl && /^https:\/\//.test(imgUrl)) {
+  if (imgUrl && (/^https:\/\//.test(imgUrl) || (/^data:image\/(png|jpeg|gif|webp|svg\+xml);base64,/.test(imgUrl) && imgUrl.length <= 600000))) {
     const img = document.createElement("img");
     img.alt = name;
     img.loading = "lazy";
@@ -251,9 +258,11 @@ async function onDeploy() {
   if (!artifact) return setErr($("deployMsg"), t("artifactFail"));
   const name = $("colName").value.trim(), symbol = $("colSymbol").value.trim();
   if (!name || !symbol) return setErr($("deployMsg"), t("fillAll"));
+  const art = $("colType").value === "shared" ? artifactShared : artifact;
+  if (!art) return setErr($("deployMsg"), t("artifactFail"));
   setMsg($("deployMsg"), t("deploying"));
   try {
-    const factory = new ethers.ContractFactory(artifact.abi, artifact.bytecode, signer);
+    const factory = new ethers.ContractFactory(art.abi, art.bytecode, signer);
     const deployTx = await factory.getDeployTransaction(name, symbol);
     const tx = await sendGas(deployTx);
     const receipt = await tx.wait();
@@ -397,6 +406,7 @@ function setLang(l) {
   lang = l;
   try { localStorage.setItem("qomnft-lang", l); } catch (e) {}
   applyLang();
+  refreshSimpleMode();
   loadMarket();
 }
 function applyThemeIcon() { $("themeBtn").textContent = document.documentElement.dataset.theme === "dark" ? "☀️" : "🌙"; }
@@ -434,6 +444,12 @@ $("addColBtn").addEventListener("click", async () => {
 });
 $("deployBtn").addEventListener("click", onDeploy);
 $("mintBtn").addEventListener("click", onMint);
+$("imgFile").addEventListener("change", onImageSelected);
+$("nftName").addEventListener("input", () => { saveSimple(); renderSimpleInfo(); });
+$("nftDesc").addEventListener("input", () => { saveSimple(); renderSimpleInfo(); });
+$("setImgBtn").addEventListener("click", onSetImage);
+$("mintImgBtn").addEventListener("click", onMintImage);
+$("mintColSelect").addEventListener("change", () => { const a = $("mintColSelect").value; if (a) colInfo(a).then(refreshSimpleMode); else refreshSimpleMode(); });
 $("dlgClose").addEventListener("click", () => $("walletDlg").close());
 $("dlgDisconnect").addEventListener("click", disconnectWallet);
 
@@ -444,8 +460,203 @@ $("dlgDisconnect").addEventListener("click", disconnectWallet);
     const r = await fetch("collection-artifact.json");
     if (r.ok) artifact = await r.json();
   } catch (e) {}
+  try {
+    const r2 = await fetch("collection-shared-artifact.json");
+    if (r2.ok) artifactShared = await r2.json();
+  } catch (e) {}
+  restoreSimple();
   await rebuildSelects();
   await silentRestore();
   watchInjected();
+  refreshSimpleMode();
   loadMarket();
 })();
+
+/* ---------- simple mint (attach an image) ---------- */
+let simple = { imageData: "", rawKB: 0, uri: "" };
+let gasPriceCache = { at: 0, wei: 0n };
+
+function dataUrlBytes(u) {
+  const i = u.indexOf(",");
+  if (i < 0) return 0;
+  return Math.floor((u.length - i - 1) * 3 / 4);
+}
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+function downscale(dataUrl, maxDim) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+      if (scale >= 1) return resolve(dataUrl);
+      const cv = document.createElement("canvas");
+      cv.width = Math.round(img.width * scale);
+      cv.height = Math.round(img.height * scale);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      resolve(cv.toDataURL("image/webp", 0.82));
+    };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+}
+async function buildSimpleUri() {
+  if (!simple.imageData) { simple.uri = ""; return; }
+  const meta = { name: $("nftName").value.trim(), description: $("nftDesc").value.trim(), image: simple.imageData };
+  const url = await fileToDataUrl(new Blob([JSON.stringify(meta)], { type: "application/json" }));
+  simple.uri = "data:application/json;base64," + url.slice(url.indexOf(",") + 1);
+}
+function saveSimple() {
+  try {
+    localStorage.setItem("qomnft-simple", JSON.stringify({ imageData: simple.imageData, rawKB: simple.rawKB, name: $("nftName").value, desc: $("nftDesc").value }));
+  } catch (e) { /* image too large for localStorage — it still works for this session */ }
+}
+function restoreSimple() {
+  try {
+    const s = JSON.parse(localStorage.getItem("qomnft-simple") || "null");
+    if (!s) return;
+    simple.imageData = s.imageData || "";
+    simple.rawKB = s.rawKB || 0;
+    if (s.name) $("nftName").value = s.name;
+    if (s.desc) $("nftDesc").value = s.desc;
+  } catch (e) {}
+}
+async function currentGasPrice() {
+  if (Date.now() - gasPriceCache.at < 60000 && gasPriceCache.wei > 0n) return gasPriceCache.wei;
+  try {
+    const fee = await readProvider.getFeeData();
+    if (fee.gasPrice) gasPriceCache = { at: Date.now(), wei: fee.gasPrice };
+  } catch (e) {}
+  return gasPriceCache.wei;
+}
+function estQomx(gas, wei) { return wei > 0n ? (Number(gas) * Number(wei) / 1e18) : 0; }
+function fmtQomx(x) { return x >= 100 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x.toFixed(2); }
+// Measured locally (2026-11-27): a mint's gas ≈ 118,228 + ~705 per tokenURI char
+// (the URI is stored on-chain); a shared-collection mint is ~62–96k gas flat.
+function uriGas(uriLen) { return 118228 + 705 * uriLen; }
+
+async function renderSimpleInfo() {
+  const el = $("imgInfo");
+  if (!simple.imageData) { el.textContent = ""; return; }
+  const usedKB = dataUrlBytes(simple.imageData) / 1024;
+  let txt = t("imgInfoOrig").replace("{a}", simple.rawKB.toFixed(1)) + " · " + t("imgInfoUsed").replace("{b}", usedKB.toFixed(1));
+  if (usedKB > 24) txt += " · " + t("bigImgWarn").replace("{b}", usedKB.toFixed(1));
+  await buildSimpleUri();
+  const wei = await currentGasPrice();
+  if (wei > 0n && simple.uri) {
+    const addr = $("mintColSelect").value;
+    const info = addr ? colInfoCache[addr] : null;
+    if (info && info.shared) {
+      const setCost = estQomx(uriGas(simple.uri.length), wei);
+      const mintCost = estQomx(100000, wei);
+      txt += " · " + t("estCost").replace("{x}", fmtQomx(info.sharedURI === simple.uri ? mintCost : setCost + mintCost));
+    } else {
+      txt += " · " + t("estCost").replace("{x}", fmtQomx(estQomx(uriGas(simple.uri.length), wei)));
+    }
+  }
+  el.textContent = txt;
+  const prev = $("imgPreview");
+  prev.src = simple.imageData;
+  prev.hidden = false;
+}
+
+function refreshSimpleMode() {
+  const addr = $("mintColSelect").value;
+  const info = addr ? colInfoCache[addr] : null;
+  const isShared = !!(info && info.shared);
+  $("setImgBtn").hidden = !isShared;
+  $("sharedAdvNote").hidden = !isShared;
+  $("mintBtn").disabled = isShared;
+  renderSimpleInfo();
+}
+
+async function onImageSelected() {
+  const f = $("imgFile").files && $("imgFile").files[0];
+  if (!f) return;
+  const raw = await fileToDataUrl(f);
+  simple.rawKB = dataUrlBytes(raw) / 1024;
+  simple.imageData = dataUrlBytes(raw) > 8192 ? await downscale(raw, 256) : raw;
+  saveSimple();
+  refreshSimpleMode();
+}
+
+async function checkMintReady(msgEl) {
+  if (!signer) { setErr(msgEl, t("needConnect")); return null; }
+  const addr = $("mintColSelect").value;
+  const to = $("mintTo").value.trim();
+  if (!addr || !ethers.isAddress(to)) { setErr(msgEl, t("fillAll")); return null; }
+  const info = await colInfo(addr);
+  return { addr, to: ethers.getAddress(to), info };
+}
+async function checkOwner(c, msgEl) {
+  const owner = await c.owner();
+  if (owner.toLowerCase() !== account.toLowerCase()) { setErr(msgEl, t("notOwner").replace("{a}", short(owner))); return false; }
+  return true;
+}
+function mintedIdFromReceipt(c, receipt) {
+  for (const log of receipt.logs) {
+    try {
+      const parsed = c.interface.parseLog(log);
+      if (parsed && parsed.name === "Transfer") return parsed.args[2];
+    } catch (e) {}
+  }
+  return null;
+}
+
+async function onSetImage() {
+  const msgEl = $("simpleMsg");
+  const ready = await checkMintReady(msgEl);
+  if (!ready) return;
+  if (!artifactShared) return setErr(msgEl, t("artifactFail"));
+  if (!simple.imageData) return setErr(msgEl, t("needImage"));
+  if (!$("nftName").value.trim()) return setErr(msgEl, t("needName"));
+  await buildSimpleUri();
+  setMsg(msgEl, t("settingImg"));
+  try {
+    const c = new ethers.Contract(ready.addr, artifactShared.abi, signer);
+    if (!(await checkOwner(c, msgEl))) return;
+    const tx = await sendGas(await c.setSharedURI.populateTransaction(simple.uri));
+    await tx.wait();
+    delete colInfoCache[ready.addr];
+    await colInfo(ready.addr);
+    setMsg(msgEl, t("imgSetOk"));
+    appendExplorerLink(msgEl, tx.hash);
+    refreshSimpleMode();
+  } catch (e) { setErr(msgEl, t("txFailed")); }
+}
+
+async function onMintImage() {
+  const msgEl = $("simpleMsg");
+  const ready = await checkMintReady(msgEl);
+  if (!ready) return;
+  if (!simple.imageData) return setErr(msgEl, t("needImage"));
+  if (!$("nftName").value.trim()) return setErr(msgEl, t("needName"));
+  await buildSimpleUri();
+  const copies = Math.max(1, Math.min(20, parseInt($("mintCopies").value || "1", 10) || 1));
+  const isShared = !!ready.info.shared;
+  const art = isShared ? artifactShared : artifact;
+  if (!art) return setErr(msgEl, t("artifactFail"));
+  setMsg(msgEl, t("minting"));
+  try {
+    const c = new ethers.Contract(ready.addr, art.abi, signer);
+    if (!(await checkOwner(c, msgEl))) return;
+    if (isShared && ready.info.sharedURI !== simple.uri) return setErr(msgEl, t("needSetFirst"));
+    let lastId = null, lastHash = null;
+    for (let i = 0; i < copies; i++) {
+      const txReq = isShared ? await c.mint.populateTransaction(ready.to) : await c.mint.populateTransaction(ready.to, simple.uri);
+      const tx = await sendGas(txReq);
+      const receipt = await tx.wait();
+      lastId = mintedIdFromReceipt(c, receipt);
+      lastHash = tx.hash;
+      if (copies > 1) setMsg(msgEl, t("progressMinted").replace("{a}", i + 1).replace("{b}", copies));
+    }
+    setMsg(msgEl, t("mintedOk").replace("{id}", lastId !== null ? lastId.toString() : "?").replace("{a}", short(ready.to)));
+    if (lastHash) appendExplorerLink(msgEl, lastHash);
+    loadMarket();
+  } catch (e) { setErr(msgEl, t("txFailed")); }
+}

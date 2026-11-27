@@ -55,6 +55,13 @@
 
     <h3 data-i18n="deployTitle">1. Create your collection</h3>
     <p class="muted" data-i18n="deployNote"></p>
+    <label><span data-i18n="colTypeLbl">Collection type</span>
+      <select id="colType">
+        <option value="standard" data-i18n="typeStandard">Standard — each token has its own metadata</option>
+        <option value="shared" data-i18n="typeShared">Shared image — one metadata for all tokens</option>
+      </select>
+    </label>
+    <p class="muted" data-i18n="typeNote"></p>
     <div class="row wrap">
       <input id="colName" class="grow" data-i18n-ph="colNamePh" placeholder="Collection name (e.g. My Art)">
       <input id="colSymbol" class="grow" data-i18n-ph="colSymbolPh" placeholder="Symbol (e.g. MYART)">
@@ -62,14 +69,37 @@
     <button id="deployBtn" class="btn primary wide" type="button" data-i18n="deployBtn">Deploy my collection</button>
     <p id="deployMsg" class="msg"></p>
 
-    <h3 data-i18n="mintOneTitle">2. Mint an NFT</h3>
-    <p class="muted" data-i18n="mintOneNote"></p>
     <label><span data-i18n="mintColLbl">Collection (one you own)</span>
       <select id="mintColSelect"></select>
     </label>
     <label><span data-i18n="recipientLbl">Recipient address</span>
       <input id="mintTo" class="mono" placeholder="0x…">
     </label>
+
+    <h3 data-i18n="simpleTitle">2. Simple mint — just attach an image</h3>
+    <p class="muted" data-i18n="simpleNote"></p>
+    <label><span data-i18n="imgLbl">Image</span>
+      <input id="imgFile" type="file" accept="image/*">
+    </label>
+    <img id="imgPreview" class="nft-preview" alt="" hidden>
+    <label><span data-i18n="nftNameLbl">NFT name</span>
+      <input id="nftName" data-i18n-ph="nftNamePh" placeholder="e.g. My Art">
+    </label>
+    <label><span data-i18n="descLbl">Description (optional)</span>
+      <input id="nftDesc">
+    </label>
+    <p id="imgInfo" class="muted"></p>
+    <div class="row wrap">
+      <button id="setImgBtn" class="btn" type="button" data-i18n="setImgBtn" hidden>Set this image on the collection (one time)</button>
+      <label class="check"><span data-i18n="copiesLbl">Copies</span> <input id="mintCopies" type="number" value="1" min="1" max="20" class="copies"></label>
+      <button id="mintImgBtn" class="btn primary" type="button" data-i18n="mintImgBtn">Mint with this image</button>
+    </div>
+    <p class="muted" data-i18n="copiesNote"></p>
+    <p id="simpleMsg" class="msg"></p>
+
+    <h3 data-i18n="mintOneTitle">3. Advanced — mint with a metadata URI</h3>
+    <p class="muted" data-i18n="mintOneNote"></p>
+    <p class="notice" id="sharedAdvNote" data-i18n="sharedAdvNote" hidden></p>
     <label><span data-i18n="uriLbl">Metadata URI (https://… or ipfs://…)</span>
       <input id="mintUri" class="mono" placeholder="ipfs://…/1.json">
     </label>

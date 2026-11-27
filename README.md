@@ -17,9 +17,20 @@ by your own wallet. Nothing is custodied by this site.
   Any ERC-721 collection can be added by address; collections you deploy here
   are added automatically. The registry is stored in your browser
   (localStorage) — there is no server.
-- **Mint: live.** Two steps, both from your wallet:
-  1. Deploy your own collection (a standard OpenZeppelin ERC-721, see below).
-  2. Mint NFTs into it, each with its own metadata URI.
+- **Mint: live.** Everything is signed by your wallet:
+  1. Deploy your own collection — two templates (see below): *standard*
+     (each token has its own metadata) or *shared image* (one metadata for
+     every token; cheapest for same-art collections).
+  2. Mint — either the **simple flow** (attach an image; the site builds
+     the metadata and stores it on-chain as a data URI, no external
+     hosting; the image is kept in your browser so the same art can be
+     minted again without re-uploading) or the **advanced flow** (your own
+     metadata URI). On-chain storage is expensive on this chain (≈705 gas
+     per stored character), so the simple flow auto-downscales large
+     images and shows an estimated cost before you sign; for shared-image
+     collections the metadata is stored once and each mint is cheap.
+     IPFS pinning with your own API key is **not** built — see `DESIGN.md`
+     §2.1/§4 for the comparison and the open decision.
 - **Trading (list / buy): NOT available.** It needs a dedicated market
   contract, which has **not** been deployed. Who would deploy it and under
   what rules (fees, etc.) is an open decision — see `DESIGN.md`. The site says
@@ -27,19 +38,21 @@ by your own wallet. Nothing is custodied by this site.
 
 ## The collection contract
 
-`contracts/QomCollection.sol` — a minimal OpenZeppelin ERC-721
-(`ERC721URIStorage` + `Ownable`):
+Two templates, both minimal OpenZeppelin ERC-721 with the deployer as owner
+and only minter, and no admin function that can move anyone's tokens:
 
-- The deployer is the owner and the only minter.
-- `mint(to, uri)` issues sequential token IDs starting at 1, each with its own
-  metadata URI.
-- No admin function can move anyone's tokens; contract ownership controls
-  minting only.
-- Compiled with solc 0.8.26, `evmVersion: paris`, optimizer 200 runs
-  (`tools/compile.js`); the site deploys the resulting bytecode from
-  `docs/collection-artifact.json`.
-- Local tests (`tools/test-local.js`, Ganache): 8/8 pass — deploy, mint,
-  ownership, tokenURI, and non-owner mint reverts.
+- `contracts/QomCollection.sol` (`ERC721URIStorage` + `Ownable`) —
+  **standard**: `mint(to, uri)` issues sequential IDs from 1, each with its
+  own metadata URI. Local tests 8/8 (`tools/test-local.js`).
+- `contracts/QomCollectionShared.sol` (`ERC721` + `Ownable`) — **shared
+  image**: one metadata URI stored in the contract (`setSharedURI`) is
+  returned for every token; `mint(to)` needs no URI. Local tests 7/7
+  (`tools/test-shared.js`).
+
+Both compiled with solc 0.8.26, `evmVersion: paris`, optimizer 200 runs
+(`tools/compile.js`, `tools/compile-shared.js`); the site deploys the
+bytecode from `docs/collection-artifact.json` /
+`docs/collection-shared-artifact.json`.
 
 ## Notes and limits
 
