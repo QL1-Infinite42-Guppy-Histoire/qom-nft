@@ -54,120 +54,65 @@ Trustless fixed-price trading needs a market contract:
 
 Until that contract exists, the site is browse-only and says so.
 
-### 3.1 Payment currency — DECIDED: Option B, Q-denominated (owner, 2026-11-27)
+### 3.1 Payment currency — DECIDED: Option A, dual-price (owner, 2026-11-27, revised)
 
 Requirement (owner spec): at purchase time the **buyer chooses to pay in Q**
 (the Qom chain stablecoin, `0xd53D9f937537262F78AEC261785D731E9E829138`,
-6 decimals) **or in QOMX**. The owner decided **Option B**: all listings are
-denominated **in Q only**, and paying with QOMX means converting QOMX→Q.
-**The seller always receives Q**, whichever leg the buyer used (premise
-included in the design report for the owner's confirmation). Option A
-(dual-price pass-through) was considered and set aside by this decision.
+6 decimals) **or in QOMX**. The mechanism was first decided as Option B
+(Q-denominated + conversion) earlier on 2026-11-27 and then **revised by
+the owner the same day to Option A**, which is the design below. (The B
+analysis is kept in git history; its two-step variant stays a possible
+future front-end convenience, not the settlement design.)
 
-The conversion itself has two shapes; the **main line is B1** (owner
-instruction: develop the safer variant — conversion in the front-end, the
-market contract stays simple). B2 is kept here for comparison.
+**Option A — dual-price listings, pass-through settlement:**
 
-#### B1 (main line) — two user-signed steps, simple market contract
+- `list(collection, tokenId, priceQ, priceNative)` — the seller sets a Q
+  price and/or a QOMX price; at least one must be > 0 (the call reverts if
+  both are zero). A zero price means "not offered in that currency".
+  Prices are fixed for the life of the listing (changing a price =
+  cancel + relist).
+- `buyWithQ(listingId)` — the buyer needs a Q allowance ≥ priceQ. The
+  contract pulls Q buyer → seller and pulls the NFT seller → buyer in one
+  transaction; if either leg fails, everything reverts and nothing moves.
+- `buyWithQOMX(listingId)` — payable; `msg.value` must equal priceNative
+  exactly (the front-end always sends the exact listing price, so no
+  refund path exists and the contract makes no extra external call). The
+  contract forwards the QOMX to the seller and pulls the NFT to the buyer
+  in the same transaction.
+- **The seller receives exactly the currency the buyer chose** (minus any
+  fee). There is no conversion anywhere: the contract contains no Router,
+  no oracle and no pool address. The only pinned token is Q.
+- Fee: a `feeBps` parameter, taken in whichever currency was paid (split
+  inside the same transaction; the contract never holds a balance). Its
+  initial value is a §4 decision (0% is valid).
+- `cancel(listingId)` — seller only. Custody shape: **approve-pull**
+  (recommended) — the seller keeps the NFT until the moment of sale;
+  `buy*` re-checks ownership and approval, so a stale listing (token
+  moved, approval revoked) fails cleanly, and the front-end filters stale
+  listings out of the buyable view. Escrow-at-list remains the §4
+  alternative.
+- Events: `Listed`, `Cancelled`, `Sold` (recording which currency was
+  paid and the amount), so the front-end can rebuild the market view from
+  logs alone.
 
-The market contract only ever handles Q:
-
-- `list(collection, tokenId, priceQ)` — seller lists at a fixed Q price.
-  Custody shape: **approve-pull** (recommended) — the seller keeps the NFT
-  and grants the market an approval; the token moves only inside `buy()`.
-  (Escrow-at-list is the alternative; see §4.)
-- `buy(listingId)` — requires the buyer's Q allowance; atomically pulls Q
-  from buyer → seller (minus any fee) and pulls the NFT seller → buyer.
-  If either leg fails the whole transaction reverts and no funds move.
-  `buy()` re-checks that the seller still owns the token and the approval
-  still stands, so a stale listing fails cleanly instead of mis-settling.
-- `cancel(listingId)` — seller only. With approve-pull, revoking the
-  approval or moving the token also makes a listing unfillable; the
-  front-end filters such stale listings out of the buyable view by reading
-  `ownerOf` + approval before rendering.
-- Fee: a `feeBps` parameter (accrues in Q to a fee recipient). Its initial
-  value is a §4 decision (0% is valid). No Router, no oracle, no pool
-  address anywhere in the contract — Q's address is the only pinned token.
-
-Paying with QOMX is a **front-end flow of two steps**, both signed by the
-buyer:
-
-1. **Swap step.** The site quotes the official pool through the Router
-   (`getAmountsIn` for exactly `priceQ` out, on the same QOMX→Q path
-   QOM DEX already uses live) and the buyer swaps with
-   `swapETHForExactTokens`: they receive exactly `priceQ` of Q, and the
-   Router refunds any excess QOMX automatically. The buyer's maximum spend
-   is the quoted input × (1 + slippage tolerance) — if the pool moves past
-   that, the swap reverts and the buyer keeps their QOMX (only gas is
-   spent). Proposed parameters: slippage default **1%**, hard cap **5%**
-   (tighter than the DEX's 10% because this is a purchase, not a trade);
-   deadline **10 minutes**; the quote is re-read immediately before
-   signing and the flow aborts if it moved beyond tolerance (the same
-   displayed-quote discipline as QOM DEX).
-2. **Buy step.** The site re-reads the listing (still active, same price,
-   seller still owner) — if it changed, the flow stops with a clear
-   message. Otherwise the buyer approves Q if needed (exact amount) and
-   calls `buy()`. From this point there is **no rate exposure at all**:
-   the price is fixed in Q and the buyer already holds exactly that much Q.
-
-Failure and refund behaviour under B1:
-
-- Swap reverts → nothing moved but gas; buyer keeps QOMX.
-- Swap succeeds but the listing is gone before `buy()` → the buyer simply
-  holds `priceQ` of Q **in their own wallet**. Nothing is locked in any
-  contract, so there is nothing to refund; the site says so and links to
-  the DEX if they want to swap back.
-- `buy()` reverts → Q stays with the buyer (allowance may remain; no
-  transfer happened).
-
-Gas burden under B1: the **buyer** pays for the swap + (possible) Q
-approval + `buy()` (2–3 transactions); the **seller** pays for listing
-(and a one-time per-collection approval). Every send follows this chain's
-rule (≥50% of the gas limit is charged), so each uses estimate × 1.2.
-No party's gas is ever taken from sale proceeds.
-
-Price-movement summary under B1: the item's price can never move (fixed
-in Q). The only moving number is the QOMX→Q rate during step 1, bounded
-by the buyer's own max-spend; after step 1 the exposure is zero.
-
-#### B2 (comparison) — conversion inside the market contract
-
-`buyWithQOMX(listingId)` payable: the contract quotes the Router, swaps
-the buyer's QOMX→Q to itself, settles the sale in Q, and refunds leftover
-QOMX — all in one transaction.
-
-| Aspect | B1 two-step (main line) | B2 in-contract swap |
-|---|---|---|
-| Market contract | Q only; no Router/pool dependency; small audit surface | Router + pair pinned in; refund and reentrancy surface; much larger audit |
-| Atomicity | Two steps; a failed buy after a successful swap leaves the buyer holding Q (in their own wallet — safe, but a visible intermediate state) | All-or-nothing in one tx; no intermediate state |
-| Slippage enforcement | Bounded at the swap step (max-spend); buy step has no rate risk | Enforced on-chain at execution (strongest form) |
-| Failure cost | Cheap failures (swap revert = small gas; buy never attempted with wrong state) | One heavy tx; a revert burns the full swap+settle gas |
-| Pool failure / migration | Only the QOMX payment option breaks; Q purchases and the contract are unaffected; the front-end can point at a new pool freely | QOMX purchases break inside an immutable contract; fixing means redeploy + relist everything |
-| Signatures | 2–3 (swap, maybe approve, buy) | 1 |
-| Quote discipline | Front-end re-quote + abort (QOM DEX pattern, proven) | Contract-enforced min/max at execution |
-
-B1 is the main line per the owner's instruction; B2's only decisive wins
-are single-signature UX and on-chain slippage enforcement, bought with a
-permanently larger, pool-coupled contract.
-
-**Display-only conversion (both shapes).** Showing an approximate QOMX
-equivalent under a Q price, from the pool's spot reserves (≈752 QOMX per
-Q on 2026-11-26), is fine as a labelled estimate; it is never the
-settlement price — settlement under B1 is the Router quote at swap time,
-bounded by the buyer's max-spend.
+**Display-only conversion.** The front-end may show an approximate
+equivalent ("≈ … QOMX" under a Q price) from the official pool's spot
+reserves (≈752 QOMX per Q on 2026-11-26), labelled as an estimate. Per
+the owner's instruction it is never used for settlement — settlement is
+always one of the seller's two stated prices, exactly as listed.
 
 ## 4. Open decisions (for the owner)
 
 1. **Market contract:** deploy or not? If yes — from whose wallet, who is
    the contract owner, what fee (0% is a valid choice), approve-pull vs
    escrow?
-1b. **Payment method (§3.1): DECIDED 2026-11-27 — Option B, Q-denominated,
-   B1 two-step conversion as the main line.** Still open inside it: the
-   "seller always receives Q" premise (reported for confirmation),
-   approve-pull vs escrow, the slippage parameters (proposed default 1% /
-   cap 5% / 10-minute deadline), and whether listings get an optional
-   expiry (v1 proposal: none — manual cancel + stale filtering only).
-   Deployment is a separate phase, like the QOM DEX limit orders.
+1b. **Payment method (§3.1): DECIDED 2026-11-27, revised the same day —
+   Option A dual-price pass-through** (seller sets Q and/or QOMX price;
+   buyer chooses; seller receives that currency as-is; no conversion in
+   settlement). Still open: approve-pull vs escrow, the fee's initial
+   value, and whether listings get an optional expiry (v1 proposal:
+   none — manual cancel + stale filtering only). Deployment is a
+   separate phase, like the QOM DEX limit orders.
 2. **Shared collection:** is (a) per-creator self-deploy enough, or is a
    shared/factory model wanted later?
 3. **Domain:** the site is on GitHub Pages
